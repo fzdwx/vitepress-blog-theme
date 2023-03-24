@@ -23,7 +23,7 @@ pnpm dev
 ## Getting started
 
 1. Click `Use this template`
-   ![image](https://user-images.githubusercontent.com/65269574/227570419-94d5368b-28b1-4c91-beef-c5a5a26e8095.png)
+   ![image](https://user-images.githubusercontent.com/65269574/227570702-a16dc4f9-322c-46f8-9c6c-628366e4cb4f.png)
 2. Add Github Token
    ![image](https://user-images.githubusercontent.com/65269574/227569403-ac21c7fa-ed22-45e2-824d-1fa293ce0ac7.png)
 3. Enable Github action `Read and write permissions`
