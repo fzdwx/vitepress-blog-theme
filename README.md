@@ -1,8 +1,8 @@
 # vitepress blog theme
 
-![image](https://user-images.githubusercontent.com/65269574/227471487-dadaf474-fee7-4656-b51a-90b39d577c15.png)
-
 Live demo: https://vitepress-blog-theme.vercel.app/
+
+![image](https://user-images.githubusercontent.com/65269574/227471487-dadaf474-fee7-4656-b51a-90b39d577c15.png)
 
 ## Features
 
@@ -23,6 +23,7 @@ pnpm dev
 ## Getting started
 
 1. Click `Use this template`
+   ![image](https://user-images.githubusercontent.com/65269574/227570419-94d5368b-28b1-4c91-beef-c5a5a26e8095.png)
 2. Add Github Token
    ![image](https://user-images.githubusercontent.com/65269574/227569403-ac21c7fa-ed22-45e2-824d-1fa293ce0ac7.png)
 3. Enable Github action `Read and write permissions`
