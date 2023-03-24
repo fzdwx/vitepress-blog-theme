@@ -1,4 +1,4 @@
-import { ThemeConfig } from "@/utils/config.type";
+import { ThemeConfig } from "@/index";
 import { defineConfigWithTheme } from "vitepress";
 
 // https://vitepress.dev/reference/site-config

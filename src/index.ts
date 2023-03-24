@@ -5,5 +5,8 @@ import "./styles/var.css";
 import "./styles/font.css";
 import "./styles/cover.css";
 import { attachShortcuts } from "./shortcuts";
+import { ThemeConfig } from "./utils/config.type";
 
 export { attachShortcuts, Layout };
+
+export { type ThemeConfig };

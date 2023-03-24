@@ -10,15 +10,6 @@ Live demo: https://vitepress-blog-theme.vercel.app/
 2. Tags
 3. Issues sync to posts
 
-
-## Getting started
-
-1. Click `Use this template`
-2. Or new repo
-  1. `pnpm add -D vitepress`
-  2. `pnpm exec vitepress init`
-  3. `pnpm i vitepress-blog-theme`
-
 ## Local development
 
 1. pnpm
@@ -28,6 +19,14 @@ Live demo: https://vitepress-blog-theme.vercel.app/
 pnpm i
 pnpm dev
 ```
+
+## Getting started
+
+1. Click `Use this template`
+2. Add Github Token
+   ![image](https://user-images.githubusercontent.com/65269574/227569403-ac21c7fa-ed22-45e2-824d-1fa293ce0ac7.png)
+3. Enable Github action `Read and write permissions`
+   ![image](https://user-images.githubusercontent.com/65269574/227569746-8e615cca-69f4-488c-a1a9-5849eb40327f.png)
 
 ## License
 
