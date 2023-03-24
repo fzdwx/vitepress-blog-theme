@@ -1,0 +1,48 @@
+{
+  "author": {
+    "name": "fzdwx",
+    "email": "likelovec@gmail.com",
+    "url": "https://github.com/fzdwx"
+  },
+  "name": "vitepress-blog-theme",
+  "version": "0.2.0",
+  "description": "A blog theme for vitepress",
+  "module": "./src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fzdwx/vitepress-blog-theme"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@iconify/json": "^2.2.38",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/node": "^18.15.6",
+    "@vue-macros/volar": "^0.9.1",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "unplugin-auto-import": "^0.15.1",
+    "unplugin-icons": "^0.15.3",
+    "unplugin-vue-components": "^0.24.1",
+    "vitepress": "^1.0.0-alpha.61",
+    "vue": "^3.2.47"
+  },
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "sync": "go run ."
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.13.0",
+    "dayjs": "^1.11.7",
+    "gray-matter": "^4.0.3",
+    "lxgw-wenkai-screen-webfont": "^1.7.0"
+  },
+  "postcss": {
+    "plugins": {
+      "tailwindcss": {},
+      "autoprefixer": {}
+    }
+  }
+}

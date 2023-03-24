@@ -1,0 +1,145 @@
+<script setup lang="ts">
+import { useUrlSearchParams } from "@vueuse/core";
+import { useData, useRouter } from "vitepress";
+import { ref } from "vue";
+import { Page } from "../utils/content.data";
+import { getPages, tagsUrl } from "../utils/core";
+
+import PageList from "./../components/PageList.vue";
+
+const { layout, tag } = useUrlSearchParams<Record<string, string>>();
+const state = ref<{
+  layout: string;
+  tag: string;
+  allPages: Page[];
+  currentPages: Page[];
+  tags: Set<string>;
+}>({
+  layout: layout,
+  tag: tag,
+  allPages: getPages(layout),
+  currentPages: [],
+  tags: new Set<string>(),
+});
+
+const refreshTags = async () => {
+  state.value.allPages.forEach((page) => {
+    if (page.frontmatter.tags) {
+      page.frontmatter.tags.forEach((tag: string) => {
+        state.value.tags.add(tag);
+      });
+    }
+  });
+};
+
+const refreshCurrentPages = async (tag: string) => {
+  state.value.currentPages = tag
+    ? state.value.allPages.filter((page) => {
+        return page.frontmatter.tags?.includes(tag);
+      })
+    : state.value.allPages;
+};
+
+const refresh = async (tag: string) => {
+  refreshTags();
+  refreshCurrentPages(tag);
+};
+
+const resetTag = (tag: string) => {
+  if (tag !== state.value.tag) {
+    state.value.tag = tag;
+    refreshCurrentPages(tag);
+  }
+};
+
+const route = useRouter();
+route.onAfterRouteChanged = (to: string) => {
+  const { layout, tag } = useUrlSearchParams<Record<string, string>>();
+  resetTag(tag);
+  state.value.layout = layout;
+};
+
+const { frontmatter } = useData();
+
+refresh(state.value.tag);
+</script>
+
+<template>
+  <div class="Tags">
+    <main>
+      <header class="ml-10 md:ml-8">
+        <h1>{{ frontmatter.layoutTitleMap[state.layout] }}</h1>
+      </header>
+      <nav class="ml-10 md:ml-8">
+        <ul class="">
+          <a
+            v-for="tag in state.tags"
+            :href="tagsUrl(state.layout, tag)"
+            @click="resetTag(tag)"
+            class="tag"
+            :class="{ 'text-cyna-3': tag === state.tag }"
+            >{{ tag }}</a
+          >
+        </ul>
+      </nav>
+      <div class="tags-content">
+        <div class="container">
+          <div class="main">
+            <PageList :pages="state.currentPages" />
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</template>
+
+<style scoped>
+.Tags {
+  display: flex;
+  justify-content: center;
+}
+
+.tag {
+  @apply px-4 py-2 mx-4 my-1;
+  @apply bg-slate-300/30 dark:bg-slate-700/70 rounded-lg text-sm;
+  @apply hover:text-cyna-3;
+}
+
+.icon {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.tags-content {
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+@media (min-width: 640px) {
+  .tags-content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (min-width: 960px) {
+  .tags-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1152px;
+}
+
+@media (min-width: 960px) {
+  .container {
+    flex-direction: row;
+  }
+}
+</style>

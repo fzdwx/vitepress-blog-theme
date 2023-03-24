@@ -1,0 +1,26 @@
+on:
+  issues:
+    types: [opened, edited, deleted, closed, locked, unlocked]
+  # push:
+  # branches:
+  # - main
+
+env:
+  token: ${{ secrets.TOKEN }}
+  repo: vitepress-blog-theme
+
+jobs:
+  update-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version: 1.20.2
+      - run: go mod tidy
+      - run: go run main.go
+      - run: git config --global user.name "github.action"
+      - run: git config --global user.email "action@github.com"
+      - run: git add .
+      - run: git commit -a -m "update"
+      - run: git push

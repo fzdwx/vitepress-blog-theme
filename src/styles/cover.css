@@ -1,0 +1,21 @@
+.vp-doc a {
+  color: var(--link-color) !important;
+  box-shadow: 0 1px 0 var(--link-underline-shadow);
+  font-weight: 500 !important;
+  transition: var(--link-transition) !important;
+  text-decoration: none !important;
+}
+
+.vp-doc a:hover {
+  color: var(--link-hover-color) !important;
+  box-shadow: 0 2px 0px 0 var(--link-hover-underline-color);
+  font-weight: 700 !important;
+}
+
+header > h1 {
+  font-weight: 800;
+  font-size: 2.25em;
+  margin-top: 0;
+  margin-bottom: 0.8888889em;
+  line-height: 1.1111111;
+}

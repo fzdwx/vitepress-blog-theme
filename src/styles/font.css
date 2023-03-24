@@ -1,0 +1,84 @@
+/* @font-face {
+  font-family: jinkaiFont;
+  src: url("/font/jinkai.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+} */
+
+@import 'lxgw-wenkai-screen-webfont/style.css';
+@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/400.css';
+@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/400-italic.css';
+@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/500.css';
+@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/500-italic.css';
+@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/700.css';
+@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/800.css';
+@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/700-italic.css';
+@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/800-italic.css';
+
+@font-face {
+  font-family: jinkaiFont;
+  src: url('/font/jinkai.ttf');
+}
+
+@font-face {
+  font-family: f1Font-Bold;
+  src: url('/font/f1.woff2');
+}
+
+@font-face {
+  font-family: smileySans;
+  src: url('/font/smileySans.woff2') format('woff2');
+}
+
+/* @font-face {
+  font-family: zed;
+  src: url("/font/zed-mono-extended.ttf");
+} */
+
+:root {
+  --fjinkai: 'jinkaiFont', sans-serif;
+  --smileySans: 'smileySans';
+  --wenkai: 'LXGW WenKai Screen', sans-serif;
+  --zed: 'zed', monospace;
+  --jet: 'Jetbrains Mono', monospace;
+  --f1: 'f1Font-Bold';
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  direction: ltr;
+  font-synthesis: weight;
+  -webkit-font-smoothing: antialiased;
+  word-break: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--smileySans);
+}
+
+p {
+  font-family: var(--fjinkai);
+  font-size: 18px;
+}
+
+code {
+  font-family: var(--jet) !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+}
+
+.custom-block-title {
+  font-size: 19px;
+  font-family: var(--smileySans);
+}
+
+.title a {
+  font-family: 'f1Font-Bold';
+  font-size: 25px !important;
+  font-weight: bold !important;
+}
