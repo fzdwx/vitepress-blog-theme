@@ -23,13 +23,9 @@ const state = ref<{
 });
 
 const refreshTags = async () => {
-  state.value.allPages.forEach((page) => {
-    if (page.frontmatter.tags) {
-      page.frontmatter.tags.forEach((tag: string) => {
-        state.value.tags.add(tag);
-      });
-    }
-  });
+  state.value.tags = new Set<string>(
+    state.value.allPages.map((page) => page.frontmatter.tags).flat()
+  );
 };
 
 const refreshCurrentPages = async (tag: string) => {
@@ -55,8 +51,14 @@ const resetTag = (tag: string) => {
 const route = useRouter();
 route.onAfterRouteChanged = (to: string) => {
   const { layout, tag } = useUrlSearchParams<Record<string, string>>();
-  resetTag(tag);
-  state.value.layout = layout;
+  state.value.tag = tag;
+  if (layout !== state.value.layout) {
+    state.value.layout = layout;
+    state.value.allPages = getPages(layout);
+    refresh(tag)
+  } else {
+    resetTag(tag);
+  }
 };
 
 const { frontmatter } = useData();

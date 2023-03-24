@@ -5,7 +5,7 @@
     "url": "https://github.com/fzdwx"
   },
   "name": "vitepress-blog-theme",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A blog theme for vitepress",
   "module": "./src/index.ts",
   "repository": {
