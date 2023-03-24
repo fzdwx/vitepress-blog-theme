@@ -5,29 +5,30 @@
   font-style: normal;
 } */
 
-@import 'lxgw-wenkai-screen-webfont/style.css';
-@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/400.css';
-@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/400-italic.css';
-@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/500.css';
-@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/500-italic.css';
-@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/700.css';
-@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/800.css';
-@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/700-italic.css';
-@import 'https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/800-italic.css';
+@import "lxgw-wenkai-screen-webfont/style.css";
+@import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/400.css";
+@import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/400-italic.css";
+@import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/500.css";
+@import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/500-italic.css";
+@import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/700.css";
+@import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/800.css";
+@import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/700-italic.css";
+@import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/800-italic.css";
 
 @font-face {
   font-family: jinkaiFont;
-  src: url('/font/jinkai.ttf');
+  src: url("https://cdn.jsdelivr.net/gh/fzdwx/get@0.13/font/jinkai.ttf");
 }
 
 @font-face {
   font-family: f1Font-Bold;
-  src: url('/font/f1.woff2');
+  src: url("https://cdn.jsdelivr.net/gh/fzdwx/get@0.13/font/f1.woff2");
 }
 
 @font-face {
   font-family: smileySans;
-  src: url('/font/smileySans.woff2') format('woff2');
+  src: url("https://cdn.jsdelivr.net/gh/fzdwx/get@0.13/font/smileySans.woff2")
+    format("woff2");
 }
 
 /* @font-face {
@@ -36,12 +37,12 @@
 } */
 
 :root {
-  --fjinkai: 'jinkaiFont', sans-serif;
-  --smileySans: 'smileySans';
-  --wenkai: 'LXGW WenKai Screen', sans-serif;
-  --zed: 'zed', monospace;
-  --jet: 'Jetbrains Mono', monospace;
-  --f1: 'f1Font-Bold';
+  --fjinkai: "jinkaiFont", sans-serif;
+  --smileySans: "smileySans";
+  --wenkai: "LXGW WenKai Screen", sans-serif;
+  --zed: "zed", monospace;
+  --jet: "Jetbrains Mono", monospace;
+  --f1: "f1Font-Bold";
 }
 
 body {
@@ -78,7 +79,7 @@ code {
 }
 
 .title a {
-  font-family: 'f1Font-Bold';
+  font-family: "f1Font-Bold";
   font-size: 25px !important;
   font-weight: bold !important;
 }
