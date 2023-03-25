@@ -1,7 +1,3 @@
----
-layout: post
----
-
 # vitepress blog theme
 
 一个 VitePress 的博客主题, live demo: https://vitepress-blog-theme.vercel.app/
