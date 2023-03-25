@@ -66,7 +66,7 @@ export default () => {
         {{
           "doc-before": () => {
             return (
-              <div class={" not-prose "}>
+              <div class={" not-prose doc-meta "}>
                 {title(page.value)}
                 {meta(page.value)}
               </div>

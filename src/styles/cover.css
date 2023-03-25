@@ -40,6 +40,10 @@
   @apply left-24;
 }
 
+.doc-meta {
+  @apply lg:ml-24;
+}
+
 .VPDocAside .content {
 }
 

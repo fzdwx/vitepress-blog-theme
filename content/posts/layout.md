@@ -35,3 +35,7 @@ tags: ["intro"]
 1. `group` 用来分组, 会在侧边栏显示, 默认是 `Others`. 比如说我有一系列关于 `Rust` 的笔记, 你就可以设置为 `group = Rust 语言笔记`
 
 示例: [os1](/content/docs/os/os-1.html)
+
+---
+
+所有文章都必须存放在 `content` 目录下, 且 `layout` 是必须的, 但是同个 `layout` 的文章严格来讲不需要放在同个目录下.
