@@ -71,7 +71,8 @@ refresh(state.value.tag);
     <main>
       <header class="ml-10 md:ml-8">
         <h1>
-          {{ frontmatter.layoutTitleMap[state.layout] }}:
+          {{ frontmatter.layoutTitleMap[state.layout] }}
+          <span v-if="state.tag">:</span>
           <span class="pl-3 text-2xl">{{ state.tag }}</span>
         </h1>
       </header>

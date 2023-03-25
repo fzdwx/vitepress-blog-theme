@@ -10,7 +10,9 @@ const pageName = computed(() =>
   route.path.replace(/[./]+/g, "_").replace(/_html$/, "")
 );
 
-const page = getPage(route.path);
+const page = computed(() => {
+  return getPage(route.path);
+});
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const page = getPage(route.path);
       <h1>{{ page.title }}</h1>
     </header>
     <PageMeta :show-edit-link="true" :page="page" class="center" />
-    <article class="flex justify-center pt-8">
+    <article class="flex justify-center">
       <Content class="post-content vp-doc" :class="pageName" />
     </article>
   </div>

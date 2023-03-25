@@ -10,6 +10,7 @@
 2. 支持多种 Layout
    - post: 一般日常的文章, 存放于 `content/posts` 目录下
    - issue: 可以当作一种动态的文章来使用, 即不用在本地修改, 直接在页面上编辑, 通过 [github action](https://github.com/fzdwx/vitepress-blog-theme/blob/main/.github/workflows/update.yml) 进行同步, 存放于 `content/issues` 目录下
+   - docs: 文档, 存放于 `content/docs` 目录下, 会自动添加侧边栏以及大纲
 3. 支持 tag 页面
 
 ## Local development

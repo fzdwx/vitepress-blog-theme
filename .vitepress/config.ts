@@ -24,6 +24,10 @@ export default defineConfigWithTheme<ThemeConfig>({
         text: "Notes",
         link: "/tags?layout=issue",
       },
+      {
+        text: "Docs",
+        link: "/tags?layout=doc",
+      },
       { text: "Tags", link: "/tags?layout=post", activeMatch: "" },
     ],
 

@@ -8,7 +8,9 @@ const tagList = (tags: string[], layout: string) => {
   return tags.map((tag) => {
     return (
       <div class="px-2 py-1 bg-pink1 dark:bg-slate-300/20 rounded-lg text-xs mr-2">
-        <a href={tagsUrl(layout, tag)}>{tag}</a>
+        <a class={""} href={tagsUrl(layout, tag)}>
+          {tag}
+        </a>
       </div>
     );
   });

@@ -3,7 +3,7 @@ title: "Getting started"
 date: 2023-03-23T22:27:31+08:00
 draft: false
 layout: post
-tags: ["hello", "asdasasdas", "bbbbbbbbbbb", "cccccccccc", "ddddddddddddd"]
+tags: ["intro"]
 ---
 
 目前仅支持通过 template 的方式使用:

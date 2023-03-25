@@ -3,6 +3,7 @@ import { useData } from "vitepress";
 import Home from "./../layout/Home.vue";
 import Post from "./Post.vue";
 import Tags from "./Tags.vue";
+import Doc from "./Doc";
 
 const { frontmatter } = useData();
 </script>
@@ -20,6 +21,7 @@ const { frontmatter } = useData();
         frontmatter.layout === 'post' || frontmatter.layout === 'issue'
       "
     />
+    <Doc v-else-if="frontmatter.layout === 'doc'" />
     <Tags v-else-if="frontmatter.layout === 'tags'" />
     <div v-else>
       <Content />

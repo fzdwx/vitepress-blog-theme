@@ -14,8 +14,8 @@ const { page, frontmatter } = useData();
 
     <NotFound v-if="page.isNotFound" />
     <ContentDispatch v-else />
-
-    <VPFooter />
+    <div class="my-[100px]"></div>
+    <VPFooter class="" />
   </div>
 </template>
 
