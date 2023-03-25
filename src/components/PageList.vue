@@ -9,7 +9,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="pages max-w-[960px] lg:w-[960px]">
+  <div class="pages main-content">
     <article class="post-entry mr-10 ml-10" v-for="page of pages">
       <header class="entry-header">
         <h2 class="text-2xl">
