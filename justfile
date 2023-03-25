@@ -1,3 +1,6 @@
+dev:
+  @pnpm dev
+
 pub:
   npm config set registry https://registry.npmjs.org/
   pnpm publish

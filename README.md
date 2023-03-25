@@ -1,33 +1,37 @@
+---
+layout: post
+---
+
 # vitepress blog theme
 
-Live demo: https://vitepress-blog-theme.vercel.app/
+一个 VitePress 的博客主题, live demo: https://vitepress-blog-theme.vercel.app/
 
-![image](https://user-images.githubusercontent.com/65269574/227471487-dadaf474-fee7-4656-b51a-90b39d577c15.png)
+<a href="https://vitepress-blog-theme.vercel.app/content/posts/Hello.html"><img src="https://user-images.githubusercontent.com/65269574/227685679-403ce024-d33b-4ac8-9e7c-db673aff5281.png"></a>
 
 ## Features
 
-1. Posts
-2. Tags
-3. Issues sync to posts
+1. Dark mode
+2. 支持多种 Layout
+   - post: 一般日常的文章, 存放于 `content/posts` 目录下
+   - issue: 可以当作一种动态的文章来使用, 即不用在本地修改, 直接在页面上编辑, 通过 [github action](https://github.com/fzdwx/vitepress-blog-theme/blob/main/.github/workflows/update.yml) 进行同步, 存放于 `content/issues` 目录下
+3. 支持 tag 页面
 
 ## Local development
 
-1. pnpm
-2. go
+使用 `pnpm` 作为包管理器, 你可以通过以下方式进行本地开发
 
 ```shell
 pnpm i
 pnpm dev
 ```
 
-## Getting started
+如果需要测试同步 issue 功能,你需要 `go` 环境,并运行
 
-1. Click `Use this template`
-   ![image](https://user-images.githubusercontent.com/65269574/227570702-a16dc4f9-322c-46f8-9c6c-628366e4cb4f.png)
-2. Add Github Token
-   ![image](https://user-images.githubusercontent.com/65269574/227569403-ac21c7fa-ed22-45e2-824d-1fa293ce0ac7.png)
-3. Enable Github action `Read and write permissions`
-   ![image](https://user-images.githubusercontent.com/65269574/227569746-8e615cca-69f4-488c-a1a9-5849eb40327f.png)
+```
+export token=your_github_token
+export repo=your_repo
+pnpm sync
+```
 
 ## License
 
