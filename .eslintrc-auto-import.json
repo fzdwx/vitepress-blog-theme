@@ -84,6 +84,7 @@
     "onUpdated": true,
     "pageGroupByLayout": true,
     "pageMap": true,
+    "pageMetaTag": true,
     "pages": true,
     "pausableWatch": true,
     "posts": true,

@@ -19,6 +19,8 @@ var (
 	username      string
 	hourOffset    = 8 * time.Hour
 	issueTemplate = `---
+# generated don't edit this file !!!
+# 自动化生成，不要编辑这个文件！！！
 title: "{{ .Title}}"
 layout: "issue"
 date: {{ .CreateAt }}

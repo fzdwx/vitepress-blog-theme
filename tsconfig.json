@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "jsx": "preserve",
     "lib": ["ESNext", "DOM", "DOM.Iterable", "webworker"],
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -23,6 +24,7 @@
     ".vitepress/**/*.d.ts",
     ".vitepress/**/*.vue",
     "src/**/*.ts",
+    "src/**/*.tsx",
     "src/**/*.d.ts",
     "src/**/*.vue",
     "auto-imports.d.ts",
