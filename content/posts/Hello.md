@@ -6,7 +6,7 @@ layout: post
 tags: ["hello", "asdasasdas", "bbbbbbbbbbb", "cccccccccc", "ddddddddddddd"]
 ---
 
-这一个 [VitePress](https://vitepress.vuejs.org/) 的博客主题, 目前仅支持通过 template 的方式使用:
+目前仅支持通过 template 的方式使用:
 
 ## 1. 直接使用 template
 
@@ -25,7 +25,7 @@ pnpm dev
 
 开始第一篇 posts:
 
-```
+```shell
 cd content/posts
 touch Hello.md
 ```
