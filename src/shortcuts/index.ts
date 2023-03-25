@@ -1,5 +1,4 @@
-//@ts-nocheck
-import Center from "./Center.vue";
+import Center from "./Center";
 import { App } from "vue";
 
 /**
@@ -7,6 +6,7 @@ import { App } from "vue";
  * @param app app
  */
 const attachShortcuts = (app: App) => {
+  //@ts-ignore
   app.component("Center", Center);
 };
 

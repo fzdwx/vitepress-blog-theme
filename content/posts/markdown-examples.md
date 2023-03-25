@@ -99,6 +99,18 @@ true path is `/public/images/raftp2.png`
 
 ![](/images/raftp2.png)
 
+## 使用 预定义的 commponent
+
+### 1. center
+
+Note: 不支持 md 语法
+
+```vue
+<Center>123123</Center>
+```
+
+<Center>123123</Center>
+
 ## More
 
 Check out the documentation for the [full list of markdown extensions](https://vitepress.dev/guide/markdown).
