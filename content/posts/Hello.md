@@ -6,7 +6,7 @@ layout: post
 tags: ["hello", "asdasasdas", "bbbbbbbbbbb", "cccccccccc", "ddddddddddddd"]
 ---
 
-这一个 [VitePress](https://vitepress.vuejs.org/) 的博客主题, 你可以通过以下两种方式使用:
+这一个 [VitePress](https://vitepress.vuejs.org/) 的博客主题, 目前仅支持通过 template 的方式使用:
 
 ## 1. 直接使用 template
 
@@ -30,57 +30,29 @@ cd content/posts
 touch Hello.md
 ```
 
-## 2. 通过引用 npm 包
+## 2. 部署
 
-假设你已经有了一个 VitePress 项目, 那么你可以通过以下方式引用:
+可以通过 `Github action` 自动部署到 `Github Pages` 上, 也可以使用 `Vercel`.
 
-```shell
-npm i vitepress-blog-theme
-```
+### 2.1 Github action
 
-修改 `.vitepress/config.ts`
+如果使用 `Github action` 部署, 仅需将 `deploy.yml.example` 重命名为 `deploy.yml` 即可
 
-```ts
-import { ThemeConfig } from "vitepress-blog-theme/src/index";
-import { defineConfigWithTheme } from "vitepress";
+![image](https://user-images.githubusercontent.com/65269574/227693247-cd247b3c-bf2d-4ceb-8f8a-9df58c8a4150.png)
 
-export default defineConfigWithTheme<ThemeConfig>({
-  title: "My Awesome Project",
-  description: "A VitePress Site",
-  themeConfig: {
-    nav: [{ text: "Home", link: "/" }],
-    socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
-    ],
-  },
-});
-```
+### 2.2 Vercel
 
-修改 `.vitepress/theme/index.ts`
+需要修改构建命令为:
 
-```ts
-import Theme from "vitepress/theme";
-import { Layout, attachShortcuts } from "vitepress-blog-theme/src/index";
+![image](https://user-images.githubusercontent.com/65269574/227693554-f851cf22-dd51-48db-9fd5-d81446227862.png)
 
-export default {
-  ...Theme,
-  Layout,
-  //@ts-ignore
-  enhanceApp({ app, router, siteData }) {
-    attachShortcuts(app);
-  },
-};
-```
+更多配置请参考 https://vitepress.dev/guide/deploy#netlify-vercel-cloudflare-pages-aws-amplify-render
 
-## 3.Note:
+## 3. Note
 
-1. github action 需要开启读写权限
-
-
-
-1. Click `Use this template`
-   ![image](https://user-images.githubusercontent.com/65269574/227570702-a16dc4f9-322c-46f8-9c6c-628366e4cb4f.png)
-2. Add Github Token
+1. 设置 Github token 到 `Github action` 中
    ![image](https://user-images.githubusercontent.com/65269574/227569403-ac21c7fa-ed22-45e2-824d-1fa293ce0ac7.png)
-3. Enable Github action `Read and write permissions`
+2. 修改 `repo` 为你当前仓库的名称
+   ![image](https://user-images.githubusercontent.com/65269574/227692648-79b74a2e-b597-40a3-a7c0-6acc85a75d5a.png)
+3. Github action 需要开启读写权限 `Read and write permissions`
    ![image](https://user-images.githubusercontent.com/65269574/227569746-8e615cca-69f4-488c-a1a9-5849eb40327f.png)
