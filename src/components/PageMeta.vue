@@ -24,13 +24,23 @@ const editLink = () => {
     data.page.value.relativePath
   );
 };
+
+const show = () => {
+  if (layout === "home") {
+    return false;
+  }
+  if (layout === "tags") {
+    return false;
+  }
+  return true;
+};
 </script>
 
 <template>
   <div
     class="page-meta flex items-center"
     :class="{
-      'flex-col': layout !== 'home',
+      'flex-col': show(),
     }"
   >
     <div class="dark:text-dark-text/[.86]">
@@ -38,7 +48,7 @@ const editLink = () => {
         🕔 {{ formatDate(page.date) }}
       </div>
       <div
-        v-if="layout !== 'home' && page.date != page.update"
+        v-if="show() && page.date != page.update"
         class="inline-block text-sm mr-4"
       >
         {{ formatDate(page.update) }}
@@ -53,9 +63,9 @@ const editLink = () => {
     <div
       class="meta-tag-list flex flex-wrap"
       :class="{
-        'mt-3': layout !== 'home',
-        'basis-3/5': layout === 'home',
-        'flex-grow': layout === 'home',
+        'mt-3': show(),
+        'basis-3/5': !show(),
+        'flex-grow': !show(),
       }"
       v-if="page.frontmatter.tags"
     >
@@ -63,7 +73,9 @@ const editLink = () => {
         v-for="tag in page.frontmatter.tags"
         class="px-2 py-1 bg-pink1 dark:bg-slate-300/20 rounded-lg text-xs mr-2"
       >
-        <a :href="tagsUrl(layout, tag)"> {{ tag }} </a>
+        <a :href="tagsUrl(layout, tag)">
+          {{ tag }}
+        </a>
       </div>
     </div>
   </div>
