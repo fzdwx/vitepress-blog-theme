@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import { useData, useRouter } from "vitepress";
 import { posts } from "../utils/core";
 
 import PageList from "./../components/PageList.vue";
-
-const { page, frontmatter, site } = useData();
-
-const router = useRouter();
 </script>
 
 <template>

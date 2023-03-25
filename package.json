@@ -5,7 +5,7 @@
     "url": "https://github.com/fzdwx"
   },
   "name": "vitepress-blog-theme",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A blog theme for vitepress",
   "module": "./src/index.ts",
   "repository": {
@@ -32,7 +32,8 @@
     "build": "vitepress build",
     "preview": "vitepress preview",
     "sync": "go run .",
-    "pub": "npm config set registry https://registry.npmjs.org/ && pnpm publish && npm config set registry https://registry.npm.taobao.org/"
+    "pub": "npm config set registry https://registry.npmjs.org/ && pnpm publish",
+    "reset": "npm config set registry https://registry.npm.taobao.org/"
   },
   "dependencies": {
     "@vueuse/core": "^9.13.0",

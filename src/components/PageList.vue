@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Page } from "@/utils/content.data";
-import { formatDesc } from "@/utils/core";
-import PageMeta from "@/components/PageMeta.vue";
+import { Page } from "../utils/content.data";
+import { formatDesc } from "../utils/core";
+import PageMeta from "../components/PageMeta.vue";
 
 defineProps<{
   pages: Page[];

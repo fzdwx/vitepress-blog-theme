@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 //@ts-ignore
-import { data as contents, Page } from "@/utils/content.data";
+import { data as contents, Page } from "./content.data";
 
 export const inBrowser = typeof document !== "undefined";
 export const HASH_RE = /#.*$/;
