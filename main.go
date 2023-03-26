@@ -57,6 +57,7 @@ func sync() *cobra.Command {
 		Use:   "sync",
 		Short: "同步 issue 到本地的 /content/issues 目录",
 		Run: func(_ *cobra.Command, _ []string) {
+      _init()
 			issues_gh, _, err := client.Issues.ListByRepo(ctx, username, repo, &github.IssueListByRepoOptions{})
 			if err != nil {
 				perr("list issue by repo", err)
@@ -78,6 +79,7 @@ func update() *cobra.Command {
 		Use:   "update",
 		Short: `更新 vitepress-blog-theme`,
 		Run: func(_ *cobra.Command, _ []string) {
+      _init()
 			dir := "../vitepress-blog-theme-" + time.Now().Format("20060102")
 			os.RemoveAll(dir)
 
@@ -110,6 +112,7 @@ func newSite() *cobra.Command {
 		Use:   "new",
 		Short: `创建新的 vitepress-blog-theme 项目`,
 		Run: func(_ *cobra.Command, _ []string) {
+      _init()
 			cmd := exec.Command("git", "clone", "--depth=1", "https://github.com/fzdwx/vitepress-blog-theme.git")
 			cmd.Stderr = os.Stderr
 			if err := cmd.Run(); err != nil {
@@ -186,7 +189,7 @@ editLink: "{{ .Url}}"
 `
 )
 
-func init() {
+func _init() {
 	gh_token := os.Getenv("GH_TOKEN")
 	if gh_token == "" {
 		gh_token = os.Getenv("token")
