@@ -147,10 +147,8 @@ func newCmd() *cobra.Command {
 		flagGroup  string
 	)
 	cmd := &cobra.Command{
-		Use: "new",
-		Short: `创建新的页面
-$ bang new  # 交互式创建
-$ bang -t "标题" -l "post" -g "group" new  # 直接创建`,
+		Use:   "new",
+		Short: `创建新的页面`,
 		Run: func(_ *cobra.Command, _ []string) {
 			if flagTtile != "" {
 				newPage(flagTtile, flagLayout, flagGroup)
@@ -229,8 +227,8 @@ vitepress-blog-theme 的辅助工具
 
 1. ` + "`new`" + ` 命令修改为 init
 2. 原来的 new 命令改为创建新的页面
-  - $ bang new  # 交互式创建
-  - $ bang -t "标题" -l "post" -g "group" new  # 直接创建
+    -  bang new  # 交互式创建
+    -  bang -t "标题" -l "post" -g "group" new  # 直接创建
 
 ## v0.2.0
 
