@@ -2,7 +2,7 @@
 
 一个 VitePress 的博客主题, live demo: https://vitepress-blog-theme.vercel.app/
 
-<a href="https://vitepress-blog-theme.vercel.app/content/posts/Hello.html"><img src="https://user-images.githubusercontent.com/65269574/227694593-5d711109-71ad-4eb7-94a5-69e5ec28a6a7.png"></a>
+<a href="https://vitepress-blog-theme.vercel.app/content/posts/Hello.html"><img src="https://user-images.githubusercontent.com/65269574/227759806-0ac36549-9ada-426b-8c67-50c0ae04b3d9.png"></a>
 
 ## Features
 
