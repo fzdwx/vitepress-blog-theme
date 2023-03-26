@@ -6,9 +6,22 @@ pub:
   pnpm publish
   npm config set registry https://registry.npm.taobao.org/
 
-corss:
-  GOOS=darwin  GOARCH=amd64 go build -o ./bin/corss_darwin_amd64 ./main.go
-  GOOS=linux   GOARCH=amd64 go build -o ./bin/corss_linux_amd64 ./main.go
-  GOOS=windows GOARCH=amd64 go build -o ./bin/corss_windows_amd64.exe ./main.go
+bang:
+  @GOOS=darwin  GOARCH=amd64 go build -o ./bin/bang ./main.go
+  cd ./bin &&  tar -zcvf ../bin/bang-darwin-amd64.tar.gz ./bang
+  @GOOS=linux   GOARCH=amd64 go build -o ./bin/bang ./main.go
+  cd ./bin && tar -zcvf ../bin/bang-linux-amd64.tar.gz ./bang
+  @GOOS=windows GOARCH=amd64 go build -o ./bin/bang.exe ./main.go
+  cd ./bin && tar -zcvf ../bin/bang-windows-amd64.tar.gz ./bang.exe
+  @rm -rf ./bin/bang ./bin/bang.exe
 
 upload:
+  # sh
+  gh release upload $(go run . version) ./bin/bang-darwin-amd64.tar.gz ./bin/bang-linux-amd64.tar.gz ./bin/bang-windows-amd64.tar.gz
+
+release: bang
+  # sh
+  @go run . log > qwe
+  cat qwe | gh release create $(go run . version) -F -
+  @just upload
+  @rm -rf qwe

@@ -19,22 +19,24 @@ import (
 var (
 	includeDir = []string{
 		"src",
-		"go.mod",
-		"go.sum",
-		"main.go",
 	}
+	version = "0.1.1"
 )
 
 func main() {
 	cmd := root()
 	cmd.AddCommand(update())
+	cmd.AddCommand(versionCmd())
+	cmd.AddCommand(logCmd())
 
 	cmd.Execute()
 }
 
 func root() *cobra.Command {
 	return &cobra.Command{
-		Use: "bang",
+		Use:     "bang",
+		Version: version,
+		Short:   "同步 issue 到本地的 /content/issues 目录",
 		Run: func(_ *cobra.Command, _ []string) {
 			issues_gh, _, err := client.Issues.ListByRepo(ctx, username, repo, &github.IssueListByRepoOptions{})
 			if err != nil {
@@ -54,7 +56,8 @@ func root() *cobra.Command {
 
 func update() *cobra.Command {
 	return &cobra.Command{
-		Use: "update",
+		Use:   "update",
+		Short: `更新 vitepress-blog-theme`,
 		Run: func(_ *cobra.Command, _ []string) {
 			dir := "../vitepress-blog-theme-" + time.Now().Format("20060102")
 			os.RemoveAll(dir)
@@ -75,6 +78,34 @@ func update() *cobra.Command {
 					return
 				}
 			}
+		},
+	}
+}
+
+func versionCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "version",
+		Short: "bang version",
+		Run: func(_ *cobra.Command, _ []string) {
+			fmt.Printf("vbang%s", version)
+		},
+	}
+}
+
+func logCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "log",
+		Short: "bang log",
+		Run: func(_ *cobra.Command, _ []string) {
+			log := `# bang
+
+vitepress-blog-theme 的辅助工具
+
+## v0.1.1
+
+1. 支持同步 issue 到本地的 /content/issues 目录, 需要设置环境变量 ` + "`token`" + `以及  ` + "`repo`" + `
+2. 支持更新 vitepress-blog-theme`
+			fmt.Println(log)
 		},
 	}
 }
@@ -113,7 +144,6 @@ func init() {
 	repo = os.Getenv("repo")
 	if repo == "" {
 		repo = "vitepress-blog-theme"
-		fmt.Println("Warning: no repo env var, using default:", repo)
 	}
 
 	ctx := context.Background()
