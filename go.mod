@@ -1,4 +1,4 @@
-module github.com/viteress-blog-theme
+module github.com/bang
 
 go 1.20
 
