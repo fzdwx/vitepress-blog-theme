@@ -18,10 +18,13 @@ import (
 )
 
 var (
+	// update theme
 	includeDir = []string{
 		"src", "main.go", "go.mod", "go.sum",
 		"vite.config.ts",
 	}
+
+	// newSite
 	excludeDir = []string{
 		".git", "justfile", "README.md",
 	}
@@ -144,6 +147,12 @@ func logCmd() *cobra.Command {
 			log := `# bang
 
 vitepress-blog-theme 的辅助工具
+
+## v0.2.0
+
+1. update 命令支持自动化比较依赖版本, 并且自动化更新依赖版本
+2. 新增命令 ` + "`new`" + `, 用于创建新的 vitepress-blog-theme 项目
+3. 现在直接运行 ` + "`bang`" + ` 不会同步 issue了, 需要运行 ` + "`bang sync`" + `
 
 ## v0.1.1
 

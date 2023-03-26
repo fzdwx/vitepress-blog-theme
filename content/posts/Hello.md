@@ -6,29 +6,26 @@ layout: post
 tags: ["intro"]
 ---
 
-目前仅支持通过 template 的方式使用:
+## 1. 安装主题
 
-## 1. 直接使用 template
+在 https://github.com/fzdwx/vitepress-blog-theme/releases 页面下载操作系统对应的 bang 压缩文件.
 
-进入项目 [首页](https://github.com/fzdwx/vitepress-blog-theme) 点击 `Use this template`
+> bang 是 vitepress-blog-theme 的命令行工具, 用于快速创建博客, 更新主题等
 
-![image](https://user-images.githubusercontent.com/65269574/227681996-3b540a42-cbbd-45d4-ace8-805bc0d587fd.png)
+然后运行 `bang new`
 
-然后就会生成你自己的仓库:
+就会在当前目录下生成一个 `vitepress-blog-theme` 的文件夹, 这个其实也是通过 `git clone` 实现的, 只是删除了一些不必要的文件
 
 ```shell
-git clone https://github.com/yourname/yourrepo.git
-cd yourrepo
+# 运行项目
+cd vitepress-blog-theme
 pnpm i
 pnpm dev
 ```
 
-开始第一篇 posts:
+所有的文章都在 `content/` 文件夹下
 
-```shell
-cd content/posts
-touch Hello.md
-```
+如果后续需要更新主题, 可以使用 `bang update` 命令
 
 ## 2. 部署
 
