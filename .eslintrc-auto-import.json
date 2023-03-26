@@ -84,6 +84,8 @@
     "onUnmounted": true,
     "onUpdated": true,
     "pageGroupByLayout": true,
+    "pageListItemContent": true,
+    "pageListItemCover": true,
     "pageMap": true,
     "pageMetaInfo": true,
     "pageMetaTag": true,

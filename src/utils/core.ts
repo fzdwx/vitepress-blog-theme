@@ -106,7 +106,7 @@ export function isExternal(path: string) {
 const formatDesc = (desc: string) => {
   var res = stripHtmlTags(desc);
   if (res.length > 100) {
-    res = res.slice(0, 200) + "...";
+    res = res.slice(0, 250) + "...";
   }
   return res;
 };

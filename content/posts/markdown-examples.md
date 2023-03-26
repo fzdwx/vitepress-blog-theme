@@ -7,6 +7,9 @@ ShowToc: false
 ShowBreadCrumbs: false
 layout: post
 tags: ["example", "markdown", "jyyos", "project", "pppppp", "o34ui5gklhj"]
+cover:
+  image: https://pbs.twimg.com/media/FsImGcnaAAEi7of?format=jpg&name=small
+  position: right
 ---
 
 This page demonstrates some of the built-in markdown extensions provided by VitePress.

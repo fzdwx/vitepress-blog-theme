@@ -4,6 +4,9 @@ date: 2023-03-23T22:27:31+08:00
 draft: false
 layout: post
 tags: ["intro"]
+cover:
+  image: https://user-images.githubusercontent.com/65269574/227759806-0ac36549-9ada-426b-8c67-50c0ae04b3d9.png
+  position: left
 ---
 
 ## 1. 安装主题
