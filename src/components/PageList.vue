@@ -15,7 +15,7 @@ const position = (page: Page) => {
   if (page.frontmatter.cover.position) {
     return page.frontmatter.cover.position;
   }
-  return "left";
+  return "top";
 };
 </script>
 
