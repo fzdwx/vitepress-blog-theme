@@ -1,5 +1,5 @@
 import { Page } from "@/utils/content.data";
-import { DefaultTheme, useRoute } from "vitepress";
+import { DefaultTheme, useData, useRoute } from "vitepress";
 import VPDoc from "vitepress/dist/client/theme-default/components/VPDoc.vue";
 import PageMeta from "../components/PageMeta.vue";
 import SidebarVue from "./Sidebar.vue";
@@ -26,9 +26,10 @@ const meta = (page: Page | undefined) => {
 export default () => {
   const route = useRoute();
   const page = computed(() => getPage(route.path));
+  const { theme } = useData();
 
   const docGroups = computed<Map<string, Page[]>>(() => {
-    const pages = getPages("doc");
+    const pages = getPages("doc", theme.value);
     const groups: Map<string, Page[]> = new Map();
     pages.map((page) => {
       const group = page.frontmatter.group ? page.frontmatter.group : "Others";

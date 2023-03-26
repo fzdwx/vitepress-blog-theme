@@ -1,7 +1,6 @@
 ---
 title: "Getting started"
 date: 2023-03-23T22:27:31+08:00
-draft: false
 layout: post
 tags: ["intro"]
 cover:
@@ -15,7 +14,7 @@ cover:
 
 > bang 是 vitepress-blog-theme 的命令行工具, 用于快速创建博客, 更新主题等
 
-然后运行 `bang new`
+然后运行 `bang init`
 
 就会在当前目录下生成一个 `vitepress-blog-theme` 的文件夹, 这个其实也是通过 `git clone` 实现的, 只是删除了一些不必要的文件
 
@@ -24,6 +23,14 @@ cover:
 cd vitepress-blog-theme
 pnpm i
 pnpm dev
+```
+
+接下来可以运行 `bang new` 来创建一篇文章,
+
+```shell
+bang new # 交互式创建文章
+bang new -t "文章标题" # 直接创建文章
+bang -t "标题" -l "post" -g "group" new # -l 支持 post, doc, -g 只在 doc 下使用
 ```
 
 所有的文章都在 `content/` 文件夹下

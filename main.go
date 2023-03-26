@@ -11,6 +11,11 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/charmbracelet/bubbles/key"
+	"github.com/fzdwx/infinite"
+	"github.com/fzdwx/infinite/components"
+	"github.com/fzdwx/infinite/components/input/text"
+	"github.com/fzdwx/infinite/components/selection/singleselect"
 	"github.com/google/go-github/v50/github"
 	cp "github.com/otiai10/copy"
 	"github.com/spf13/cobra"
@@ -30,14 +35,15 @@ var (
 	excludeDir = []string{
 		".git", "justfile", "README.md",
 	}
-	version = "0.2.0"
+	version = "0.3.0"
 )
 
 func main() {
 	cmd := root()
 	cmd.AddCommand(sync())    // sync issue
 	cmd.AddCommand(update())  // update theme
-	cmd.AddCommand(newSite()) // new site
+	cmd.AddCommand(initCmd()) // new site
+	cmd.AddCommand(newCmd())  // new page
 	cmd.AddCommand(versionCmd())
 	cmd.AddCommand(logCmd())
 
@@ -57,7 +63,7 @@ func sync() *cobra.Command {
 		Use:   "sync",
 		Short: "同步 issue 到本地的 /content/issues 目录",
 		Run: func(_ *cobra.Command, _ []string) {
-      _init()
+			_init()
 			issues_gh, _, err := client.Issues.ListByRepo(ctx, username, repo, &github.IssueListByRepoOptions{})
 			if err != nil {
 				perr("list issue by repo", err)
@@ -79,7 +85,7 @@ func update() *cobra.Command {
 		Use:   "update",
 		Short: `更新 vitepress-blog-theme`,
 		Run: func(_ *cobra.Command, _ []string) {
-      _init()
+			_init()
 			dir := "../vitepress-blog-theme-" + time.Now().Format("20060102")
 			os.RemoveAll(dir)
 
@@ -107,12 +113,12 @@ func update() *cobra.Command {
 	}
 }
 
-func newSite() *cobra.Command {
+func initCmd() *cobra.Command {
 	return &cobra.Command{
-		Use:   "new",
+		Use:   "init",
 		Short: `创建新的 vitepress-blog-theme 项目`,
 		Run: func(_ *cobra.Command, _ []string) {
-      _init()
+			_init()
 			cmd := exec.Command("git", "clone", "--depth=1", "https://github.com/fzdwx/vitepress-blog-theme.git")
 			cmd.Stderr = os.Stderr
 			if err := cmd.Run(); err != nil {
@@ -134,6 +140,72 @@ func newSite() *cobra.Command {
 	}
 }
 
+func newCmd() *cobra.Command {
+	var (
+		flagTtile  string
+		flagLayout string
+		flagGroup  string
+	)
+	cmd := &cobra.Command{
+		Use: "new",
+		Short: `创建新的页面
+$ bang new  # 交互式创建
+$ bang -t "标题" -l "post" -g "group" new  # 直接创建`,
+		Run: func(_ *cobra.Command, _ []string) {
+			if flagTtile != "" {
+				newPage(flagTtile, flagLayout, flagGroup)
+				return
+			}
+
+			title, err := infinite.NewText(
+				text.WithPrompt("请输入标题"),
+			).Display()
+			if err != nil {
+				perr("get title", err)
+				return
+			}
+
+			layouts := []string{"post", "doc"}
+			selectKeymap := components.DefaultSingleKeyMap()
+			selectKeymap.Confirm = key.NewBinding(
+				key.WithKeys("enter"),
+			)
+			selectKeymap.Choice = key.NewBinding(
+				key.WithKeys("enter"),
+			)
+			selectItem, err := infinite.NewSingleSelect(
+				layouts,
+				singleselect.WithKeyBinding(selectKeymap),
+				singleselect.WithDisableFilter(),
+			).Display()
+			if err != nil {
+				perr("get layout", err)
+				return
+			}
+
+			layout := layouts[selectItem]
+			group := "Others"
+			if layout == "doc" {
+				group, err = infinite.NewText(
+					text.WithPrompt("请输入文档分组"),
+				).Display()
+				if err != nil {
+					perr("get group", err)
+					return
+				}
+			}
+
+			newPage(title, layout, group)
+		},
+	}
+
+	cmd.Flags().StringVarP(&flagTtile, "title", "t", "", "标题")
+	cmd.Flags().StringVarP(&flagLayout, "layout", "l", "", "布局 (post/doc)")
+	cmd.Flags().StringVarP(&flagGroup, "group", "g", "", "文档分组(仅在 layout 为 doc 时有效)")
+
+	return cmd
+}
+
 func versionCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "version",
@@ -152,6 +224,13 @@ func logCmd() *cobra.Command {
 			log := `# bang
 
 vitepress-blog-theme 的辅助工具
+
+## v0.3.0
+
+1. ` + "`new`" + ` 命令修改为 init
+2. 原来的 new 命令改为创建新的页面
+  - $ bang new  # 交互式创建
+  - $ bang -t "标题" -l "post" -g "group" new  # 直接创建
 
 ## v0.2.0
 
@@ -328,14 +407,76 @@ func cmpDep(dir string) {
 	}
 }
 
+const postTemplate = `---
+title: "%s"
+date: "%s"
+layout: "post"
+tags: []
+---
+
+`
+
+const docTemplate = `---
+group: "%s"
+title: "%s"
+date: "%s"
+layout: "doc"
+tags: []
+---
+
+`
+
+const timeLayout = "2006-01-02T15:04:05Z07:00"
+
+func newPage(title, layout, group string) {
+	if layout == "" {
+		layout = "post"
+	}
+	var (
+		page string
+		date = time.Now().Format(timeLayout)
+	)
+
+	// format content
+	if layout == "post" {
+		page = fmt.Sprintf(postTemplate, title, date)
+	} else if layout == "doc" {
+		page = fmt.Sprintf(docTemplate, group, title, date)
+	} else {
+		perr("unknow layout: "+layout, nil)
+		return
+	}
+
+	// file dir
+	dir := filepath.Join("./content", layout+"s")
+	if layout == "doc" {
+		dir = filepath.Join(dir, group)
+	}
+	os.MkdirAll(dir, 0755)
+
+	// create file
+	f, err := os.Create(filepath.Join(dir, title+".md"))
+	if err != nil {
+		perr("create file", err)
+		return
+	}
+	defer f.Close()
+
+	_, err = f.WriteString(page)
+	if err != nil {
+		perr("write file", err)
+		return
+	}
+}
+
 type Issue struct {
 	Number      int
 	Title       string
 	Body        string
 	Labels      []Label
 	LabelString string
-	CreateAt    int64
-	UpdateAt    int64
+	CreateAt    string
+	UpdateAt    string
 	Url         string
 }
 
@@ -347,16 +488,17 @@ type Label struct {
 
 func mapissues(issue *github.Issue) *Issue {
 	label, labelString := maplabels(issue.Labels)
-	return &Issue{
+	i := &Issue{
 		Number:      issue.GetNumber(),
 		Title:       issue.GetTitle(),
 		Body:        issue.GetBody(),
 		Labels:      label,
 		LabelString: labelString,
-		CreateAt:    issue.GetCreatedAt().Add(hourOffset).UnixMilli(),
-		UpdateAt:    issue.GetUpdatedAt().Add(hourOffset).UnixMilli(),
+		CreateAt:    issue.GetCreatedAt().Local().Format(timeLayout),
+		UpdateAt:    issue.GetUpdatedAt().Local().Format(timeLayout),
 		Url:         issue.GetHTMLURL(),
 	}
+	return i
 }
 
 func maplabels(labels []*github.Label) ([]Label, string) {
@@ -378,5 +520,7 @@ func maplabels(labels []*github.Label) ([]Label, string) {
 func perr(msg string, err error) {
 	if err != nil {
 		fmt.Println("Error:", msg, ", cause", err)
+	} else {
+		fmt.Println("Error:", msg)
 	}
 }

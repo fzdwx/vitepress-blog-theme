@@ -46,13 +46,10 @@ const sort = (pages: Page[], theme: ThemeConfig) => {
     sort = theme.sortBy;
   }
 
-  console.log(sort);
-
   return pages.sort((a, b) => {
     // @ts-ignore
     const val = b[sort] - a[sort];
     // const val = a[sort] - b[sort];
-    console.log(val);
     return val;
   });
 };
@@ -68,7 +65,7 @@ const formatDate = (time: string | number, pattern?: string) => {
     pattern = defaultDataFormat;
   }
 
-  return dayjs(time).add(-8, "hour").format(pattern);
+  return dayjs(time).format(pattern);
 };
 
 const tagsUrl = (layout: string, tag: string) => {
