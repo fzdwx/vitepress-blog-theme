@@ -29,7 +29,7 @@ const position = (page: Page) => {
       }"
     >
       <!--  cover top  -->
-      <div v-if="show(page) && position(page) === 'top'" class="center">
+      <div v-if="show(page) && position(page) === 'top'" class="center mb-2">
         <PageListItemCover :position="position(page)" :page="page" />
       </div>
 
