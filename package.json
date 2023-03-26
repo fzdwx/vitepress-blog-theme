@@ -14,18 +14,18 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@iconify/json": "^2.2.38",
+    "@iconify/json": "^2.2.39",
     "@tailwindcss/typography": "^0.5.9",
     "@types/body-scroll-lock": "^3.1.0",
-    "@types/node": "^18.15.6",
-    "@vue-macros/volar": "^0.9.1",
+    "@types/node": "^18.15.10",
+    "@vue-macros/volar": "^0.9.4",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7",
-    "unplugin-auto-import": "^0.15.1",
+    "unplugin-auto-import": "^0.15.2",
     "unplugin-icons": "^0.15.3",
     "unplugin-vue-components": "^0.24.1",
-    "vitepress": "^1.0.0-alpha.61",
+    "vitepress": "1.0.0-alpha.62",
     "vue": "^3.2.47"
   },
   "scripts": {

@@ -4,13 +4,80 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"os/exec"
+	"path/filepath"
 	"strings"
 	"text/template"
 	"time"
 
 	"github.com/google/go-github/v50/github"
+	cp "github.com/otiai10/copy"
+	"github.com/spf13/cobra"
 	"golang.org/x/oauth2"
 )
+
+var (
+	includeDir = []string{
+		"src",
+		"go.mod",
+		"go.sum",
+		"main.go",
+	}
+)
+
+func main() {
+	cmd := root()
+	cmd.AddCommand(update())
+
+	cmd.Execute()
+}
+
+func root() *cobra.Command {
+	return &cobra.Command{
+		Use: "bang",
+		Run: func(_ *cobra.Command, _ []string) {
+			issues_gh, _, err := client.Issues.ListByRepo(ctx, username, repo, &github.IssueListByRepoOptions{})
+			if err != nil {
+				perr("list issue by repo", err)
+				return
+			}
+
+			var issues []Issue
+			for i := range issues_gh {
+				issues = append(issues, *mapissues(issues_gh[i]))
+			}
+
+			makeTemplate(issues)
+		},
+	}
+}
+
+func update() *cobra.Command {
+	return &cobra.Command{
+		Use: "update",
+		Run: func(_ *cobra.Command, _ []string) {
+			dir := "../vitepress-blog-theme-" + time.Now().Format("20060102")
+			os.RemoveAll(dir)
+
+			cmd := exec.Command("git", "clone", "--depth=1", "https://github.com/fzdwx/vitepress-blog-theme.git", dir)
+			cmd.Stderr = os.Stderr
+			if err := cmd.Run(); err != nil {
+				perr("clone repo", err)
+				os.RemoveAll(dir)
+				return
+			}
+
+			for i := range includeDir {
+				path := includeDir[i]
+				err := cp.Copy(filepath.Join(dir, path), path)
+				if err != nil {
+					perr("copy file", err)
+					return
+				}
+			}
+		},
+	}
+}
 
 var (
 	client        *github.Client
@@ -63,21 +130,6 @@ func init() {
 		return
 	}
 	username = users.GetLogin()
-}
-
-func main() {
-	issues_gh, _, err := client.Issues.ListByRepo(ctx, username, repo, &github.IssueListByRepoOptions{})
-	if err != nil {
-		perr("list issue by repo", err)
-		return
-	}
-
-	var issues []Issue
-	for i := range issues_gh {
-		issues = append(issues, *mapissues(issues_gh[i]))
-	}
-
-	makeTemplate(issues)
 }
 
 func makeTemplate(issues []Issue) {
