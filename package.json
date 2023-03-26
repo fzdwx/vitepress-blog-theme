@@ -32,7 +32,7 @@
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview",
-    "sync": "go run ."
+    "sync": "go run . sync"
   },
   "dependencies": {
     "@vitejs/plugin-vue-jsx": "^3.0.1",
