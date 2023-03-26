@@ -11,6 +11,32 @@ interface Page {
   desc: string; // description
 }
 
+function parseDesc(src: string | undefined, desc: string): string {
+  if (desc && desc !== "") {
+    return desc;
+  }
+
+  if (src) {
+    return src;
+  }
+
+  return "";
+}
+
+// skip --- ---
+function parseSrc(src: string | undefined): string {
+  if (!src) {
+    return "";
+  }
+
+  const pairs = src.split("---");
+  if (pairs.length < 2) {
+    return "";
+  }
+
+  return pairs.slice(2).join("---");
+}
+
 export type { Page };
 
 export default createContentLoader("./content/**/*.md", {
@@ -37,29 +63,3 @@ export default createContentLoader("./content/**/*.md", {
       .sort((a, b) => b.update - a.update);
   },
 });
-
-function parseDesc(src: string | undefined, desc: string): string {
-  if (desc && desc !== "") {
-    return desc;
-  }
-
-  if (src) {
-    return src;
-  }
-
-  return "";
-}
-
-// skip --- ---
-function parseSrc(src: string | undefined): string {
-  if (!src) {
-    return "";
-  }
-
-  const pairs = src.split("---");
-  if (pairs.length < 2) {
-    return "";
-  }
-
-  return pairs.slice(2).join("---");
-}

@@ -15,6 +15,12 @@ export interface ThemeConfig {
   icon?: ThemeableImage;
 
   /**
+   * pages sorted by date or update
+   * default is 'date'
+   */
+  sortBy?: "date" | "update";
+
+  /**
    * Custom site title in navbar. If the value is undefined,
    * `config.title` will be used.
    */

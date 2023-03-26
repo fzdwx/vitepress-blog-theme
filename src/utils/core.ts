@@ -1,4 +1,6 @@
 import dayjs from "dayjs";
+import { VitePressData } from "vitepress";
+import { ThemeConfig } from "./config.type";
 //@ts-ignore
 import { data as contents, Page } from "./content.data";
 
@@ -21,15 +23,13 @@ const init = () => {
       pageGroupByLayout.set(layout, [content]);
   });
 
-  const posts: Page[] = pageGroupByLayout.get("post") || [];
   return {
     pageMap,
-    posts,
     pageGroupByLayout,
   };
 };
 
-const { pageMap, posts, pageGroupByLayout } = init();
+const { pageMap, pageGroupByLayout } = init();
 
 /**
  * get path by route path
@@ -40,8 +40,25 @@ const getPage = (path: string) => {
   return pageMap.get(path);
 };
 
-const getPages = (layout: string) => {
-  return pageGroupByLayout.get(layout) || [];
+const sort = (pages: Page[], theme: ThemeConfig) => {
+  let sort = "date";
+  if (theme.sortBy) {
+    sort = theme.sortBy;
+  }
+
+  console.log(sort);
+
+  return pages.sort((a, b) => {
+    // @ts-ignore
+    const val = b[sort] - a[sort];
+    // const val = a[sort] - b[sort];
+    console.log(val);
+    return val;
+  });
+};
+
+const getPages = (layout: string, theme: ThemeConfig) => {
+  return sort(pageGroupByLayout.get(layout) || [], theme);
 };
 
 const defaultDataFormat = "YYYY-MM-DD HH:mm:ss";
@@ -101,7 +118,6 @@ const stripHtmlTags = (html: string) => {
 
 export {
   contents as pages,
-  posts,
   pageMap,
   pageGroupByLayout,
   formatDate,

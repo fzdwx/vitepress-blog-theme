@@ -22,6 +22,8 @@ var (
 	includeDir = []string{
 		"src", "main.go", "go.mod", "go.sum",
 		"vite.config.ts",
+		"tailwind.config.js",
+		"tsconfig.json",
 	}
 
 	// newSite

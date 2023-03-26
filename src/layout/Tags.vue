@@ -8,6 +8,9 @@ import { getPages, tagsUrl } from "../utils/core";
 import PageList from "./../components/PageList.vue";
 
 const { layout, tag } = useUrlSearchParams<Record<string, string>>();
+
+const { theme } = useData();
+
 const state = ref<{
   layout: string;
   tag: string;
@@ -17,7 +20,7 @@ const state = ref<{
 }>({
   layout: layout,
   tag: tag,
-  allPages: getPages(layout),
+  allPages: getPages(layout, theme.value),
   currentPages: [],
   tags: new Set<string>(),
 });
@@ -54,7 +57,7 @@ route.onAfterRouteChanged = (to: string) => {
   state.value.tag = tag;
   if (layout !== state.value.layout) {
     state.value.layout = layout;
-    state.value.allPages = getPages(layout);
+    state.value.allPages = getPages(layout, theme.value);
     refresh(tag);
   } else {
     resetTag(tag);

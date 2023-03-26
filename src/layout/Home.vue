@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { posts } from "../utils/core";
+import { useData } from "vitepress";
+import { getPages } from "../utils/core";
 
 import PageList from "./../components/PageList.vue";
+
+const { theme } = useData();
+
+const posts = computed(() => getPages("post", theme.value));
 </script>
 
 <template>
