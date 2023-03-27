@@ -36,7 +36,7 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	Version = "0.3.3"
+	Version = "0.3.5"
 )
 
 func main() {
@@ -494,8 +494,8 @@ func mapissues(issue *github.Issue) *Issue {
 		Body:        issue.GetBody(),
 		Labels:      label,
 		LabelString: labelString,
-		CreateAt:    issue.GetCreatedAt().Add(8 * time.Hour).Format(timeLayout),
-		UpdateAt:    issue.GetUpdatedAt().Add(8 * time.Hour).Format(timeLayout),
+		CreateAt:    issue.GetCreatedAt().UTC(). /* .Add(8 * time.Hour) */ Format(timeLayout),
+		UpdateAt:    issue.GetUpdatedAt().UTC(). /* .Add(8 * time.Hour) */ Format(timeLayout),
 		Url:         issue.GetHTMLURL(),
 	}
 	return i
