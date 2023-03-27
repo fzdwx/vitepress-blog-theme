@@ -36,7 +36,7 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	Version = "0.3.2"
+	Version = "0.3.3"
 )
 
 func main() {
@@ -253,7 +253,6 @@ var (
 	ctx           = context.Background()
 	repo          string
 	username      string
-	hourOffset    = 8 * time.Hour
 	issueTemplate = `---
 # generated don't edit this file !!!
 # 自动化生成，不要编辑这个文件！！！
@@ -495,8 +494,8 @@ func mapissues(issue *github.Issue) *Issue {
 		Body:        issue.GetBody(),
 		Labels:      label,
 		LabelString: labelString,
-		CreateAt:    issue.GetCreatedAt().Local().Format(timeLayout),
-		UpdateAt:    issue.GetUpdatedAt().Local().Format(timeLayout),
+		CreateAt:    issue.GetCreatedAt().Add(8 * time.Hour).Format(timeLayout),
+		UpdateAt:    issue.GetUpdatedAt().Add(8 * time.Hour).Format(timeLayout),
 		Url:         issue.GetHTMLURL(),
 	}
 	return i
