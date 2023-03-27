@@ -12,6 +12,9 @@ module.exports = {
         DEFAULT: {
           css: {
             "--tw-prose-headings": "#3c3c43",
+            "--tw-prose-code": "#3c3c43",
+            "--tw-prose-invert-headings": "#fffff5db",
+            "--tw-prose-invert-code": "#fffff5db",
           },
         },
       },

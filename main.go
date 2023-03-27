@@ -36,7 +36,7 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	Version = "0.4.0"
+	Version = "0.4.1"
 )
 
 func main() {
@@ -478,7 +478,7 @@ func newPage(title, layout, group string) {
 	os.MkdirAll(dir, 0755)
 
 	// create file
-	f, err := os.Create(filepath.Join(dir, title+".md"))
+	f, err := os.Create(filepath.Join(dir, time.Now().Format("2006-01-02")+"-"+title+".md"))
 	if err != nil {
 		perr("create file", err)
 		return

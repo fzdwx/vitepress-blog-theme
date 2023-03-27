@@ -62,9 +62,10 @@ h6 {
   font-family: var(--smileySans);
 }
 
+li,
 p {
   font-family: var(--fjinkai);
-  font-size: 18px;
+  font-size: 18px !important;
 }
 
 code {

@@ -23,6 +23,19 @@
   color: var(--link-hover-underline-color) !important;
 }
 
+.vp-doc blockquote {
+  border-left-color: var(--cyna-2) !important;
+}
+
+.vp-doc :not(pre) > code {
+  /* color: hsl(237, 100%, 73%) !important; */
+  /* font-weight: 500 !important; */
+}
+
+.dark .vp-doc :not(pre) > code {
+  /* color: #ff8ba6 !important; */
+}
+
 /* Doc.tsx  */
 .VPDocFooter {
   visibility: hidden;
