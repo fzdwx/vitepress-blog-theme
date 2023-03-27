@@ -36,7 +36,7 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	version = "0.3.1"
+	Version = "0.3.1"
 )
 
 func main() {
@@ -54,7 +54,7 @@ func main() {
 func root() *cobra.Command {
 	return &cobra.Command{
 		Use:     "bang",
-		Version: version,
+		Version: Version,
 		Short:   "vitepress-blog-theme 的辅助工具",
 	}
 }
@@ -210,7 +210,7 @@ func versionCmd() *cobra.Command {
 		Use:   "version",
 		Short: "bang version",
 		Run: func(_ *cobra.Command, _ []string) {
-			fmt.Printf("vbang%s", version)
+			fmt.Printf("vbang%s", Version)
 		},
 	}
 }

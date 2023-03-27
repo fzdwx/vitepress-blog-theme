@@ -84,6 +84,7 @@
     "onUnmounted": true,
     "onUpdated": true,
     "pageGroupByLayout": true,
+    "pageListItem": true,
     "pageListItemContent": true,
     "pageListItemCover": true,
     "pageMap": true,
