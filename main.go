@@ -25,7 +25,7 @@ import (
 var (
 	// update theme
 	includeDir = []string{
-		"src", "main.go", "go.mod", "go.sum",
+		"src",
 		"vite.config.ts",
 		"tailwind.config.js",
 		"tsconfig.json",
@@ -34,8 +34,9 @@ var (
 	// newSite
 	excludeDir = []string{
 		".git", "justfile", "README.md",
+		"main.go", "go.mod", "go.sum",
 	}
-	version = "0.3.0"
+	version = "0.3.1"
 )
 
 func main() {

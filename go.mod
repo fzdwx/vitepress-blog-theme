@@ -3,6 +3,8 @@ module github.com/fzdwx/bang
 go 1.20
 
 require (
+	github.com/charmbracelet/bubbles v0.15.0
+	github.com/fzdwx/infinite v0.10.1
 	github.com/google/go-github/v50 v50.2.0
 	github.com/otiai10/copy v1.9.0
 	github.com/spf13/cobra v1.6.1
@@ -13,13 +15,11 @@ require (
 	github.com/ProtonMail/go-crypto v0.0.0-20230321155629-9a39f2531310 // indirect
 	github.com/atotto/clipboard v0.1.4 // indirect
 	github.com/aymanbagabas/go-osc52 v1.2.1 // indirect
-	github.com/charmbracelet/bubbles v0.15.0 // indirect
 	github.com/charmbracelet/bubbletea v0.23.1 // indirect
 	github.com/charmbracelet/lipgloss v0.6.0 // indirect
 	github.com/cloudflare/circl v1.3.2 // indirect
 	github.com/containerd/console v1.0.3 // indirect
 	github.com/duke-git/lancet/v2 v2.1.13 // indirect
-	github.com/fzdwx/infinite v0.10.1 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
