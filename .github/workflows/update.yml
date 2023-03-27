@@ -17,8 +17,8 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: 1.20.2
-      - run: go mod tidy
-      - run: go run main.go sync
+      - run: go install github.com/fzdwx/bang
+      - run: bang sync
       - run: git config --global user.name "github.action"
       - run: git config --global user.email "action@github.com"
       - run: git add .
