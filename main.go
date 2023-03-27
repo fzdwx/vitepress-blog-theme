@@ -36,7 +36,7 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	Version = "0.3.5"
+	Version = "0.4.0"
 )
 
 func main() {
@@ -47,6 +47,7 @@ func main() {
 	cmd.AddCommand(update())  // update theme
 	cmd.AddCommand(initCmd()) // new site
 	cmd.AddCommand(newCmd())  // new page
+	cmd.AddCommand(devCmd())  // dev cmd `run vitepress dev`
 	cmd.AddCommand(versionCmd())
 	cmd.AddCommand(logCmd())
 
@@ -207,6 +208,23 @@ func newCmd() *cobra.Command {
 	return cmd
 }
 
+func devCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "dev",
+		Short: "bang dev # 启动 vitepress dev",
+		Run: func(_ *cobra.Command, _ []string) {
+			command := exec.Command("./node_modules/.bin/vitepress", "dev")
+			command.Stdout = os.Stdout
+			command.Stderr = os.Stderr
+
+			if err := command.Run(); err != nil {
+				perr("vitepress dev", err)
+				return
+			}
+		},
+	}
+}
+
 func versionCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "version",
@@ -225,6 +243,11 @@ func logCmd() *cobra.Command {
 			log := `# bang
 
 vitepress-blog-theme 的辅助工具
+
+## v0.4.0
+
+1. 新增命令 ` + "`dev`" + `, 用于启动 vitepress dev
+2. 修复同步 issue 时, 时区问题
 
 ## v0.3.0
 
