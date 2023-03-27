@@ -1,6 +1,7 @@
 import PageListItemCover from "./PageListItemCover";
 import PageListItemContent from "./PageListItemContent";
 import { Page } from "../utils/content.data";
+import { r, rs } from "../utils/core";
 
 interface Props {
   showCover: boolean;
@@ -11,21 +12,17 @@ interface Props {
 const getCoverTop = ({ position, page }: Props) => {
   return (
     <>
-      {position === "top" ? (
+      {r(position === "top", () => (
         <div class={"cover-top center mb-2"}>
           <PageListItemCover position={position} page={page} />
         </div>
-      ) : (
-        <div />
-      )}
+      ))}
 
-      {position === "left" ? (
+      {r(position === "left", () => (
         <div class={"cover-left row-span-3 pr-2"}>
           <PageListItemCover position={position} page={page} />
         </div>
-      ) : (
-        <div />
-      )}
+      ))}
     </>
   );
 };
@@ -33,13 +30,11 @@ const getCoverTop = ({ position, page }: Props) => {
 const getCoverBottom = ({ position, page }: Props) => {
   return (
     <>
-      {position === "right" ? (
+      {r(position === "right", () => (
         <div class={"cover-right row-span-3 pl-2"}>
           <PageListItemCover position={position} page={page} />
         </div>
-      ) : (
-        <div />
-      )}
+      ))}
     </>
   );
 };
@@ -47,27 +42,35 @@ const getCoverBottom = ({ position, page }: Props) => {
 export default (props: Props) => {
   const { showCover, position, page } = props;
 
-  return showCover ? (
-    <div class={position !== "top" ? "grid grid-rows grid-flow-col" : ""}>
-      {getCoverTop(props)}
+  return r(
+    showCover,
+    () => {
+      return (
+        <div class={rs(position !== "top", "grid grid-rows grid-flow-col")}>
+          {getCoverTop(props)}
 
-      <div class={position !== "top" ? "col-span-3" : ""}>
-        <PageListItemContent
-          class="PageListItemContent"
-          hasCover={showCover}
-          page={page}
-        />
-      </div>
+          <div class={rs(position !== "top", "col-span-3")}>
+            <PageListItemContent
+              class="PageListItemContent"
+              hasCover={showCover}
+              page={page}
+            />
+          </div>
 
-      {getCoverBottom(props)}
-    </div>
-  ) : (
-    <div>
-      <PageListItemContent
-        class="PageListItemContent"
-        hasCover={showCover}
-        page={page}
-      />
-    </div>
+          {getCoverBottom(props)}
+        </div>
+      );
+    },
+    () => {
+      return (
+        <div>
+          <PageListItemContent
+            class="PageListItemContent"
+            hasCover={showCover}
+            page={page}
+          />
+        </div>
+      );
+    }
   );
 };

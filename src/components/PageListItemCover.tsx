@@ -12,7 +12,7 @@ export default ({ page, position }: Props) => {
   }
 
   return (
-    <div className={`page-meta-cover `}>
+    <div className={`page-meta-cover ${"page-meta-cover-" + position}`}>
       <img class={position === "top" ? "" : "h-[160px]"} src={cover.image} />
     </div>
   );

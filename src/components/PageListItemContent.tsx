@@ -7,8 +7,6 @@ interface Props {
 }
 
 export default ({ hasCover, page }: Props) => {
-  console.log(hasCover);
-
   return (
     <div class={hasCover ? "grid grid-flow-row-dense" : ""}>
       <div class="entry-header">
