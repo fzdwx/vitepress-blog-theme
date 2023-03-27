@@ -36,10 +36,12 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	Version = "0.3.1"
+	Version = "0.3.2"
 )
 
 func main() {
+	time.LoadLocation("Asia/Shanghai")
+
 	cmd := root()
 	cmd.AddCommand(sync())    // sync issue
 	cmd.AddCommand(update())  // update theme
