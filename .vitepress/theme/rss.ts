@@ -73,7 +73,7 @@ function rss(
             : undefined,
         },
       ],
-      date: frontmatter.date,
+      date: frontmatter.date ? new Date(frontmatter.date) : new Date(),
     });
   }
 
