@@ -1,0 +1,42 @@
+.props-content {
+  @apply prose  prose-gray dark:prose-invert;
+}
+
+.props-content blockquote {
+  font-weight: normal;
+  font-style: normal;
+  color: inherit;
+  border-left-color: var(--cyna-2) !important;
+  border-left: 2px solid;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+header > h1 {
+  font-weight: bold !important;
+  font-size: 2.25em;
+  margin-top: 0;
+  line-height: 1.1111111;
+}
+
+.props-content .header-anchor {
+  float: left;
+  margin-left: -0.87em;
+  padding-right: 0.23em;
+  font-weight: 500;
+  user-select: none;
+  opacity: 0;
+  transition: color 0.25s, opacity 0.25s;
+}
+
+.props-content p {
+  @apply my-[0.5em];
+}
+
+.props-content h1,
+.props-content h2,
+.props-content h3,
+.props-content h4,
+.props-content h5,
+.props-content h6 {
+  letter-spacing: normal;
+}

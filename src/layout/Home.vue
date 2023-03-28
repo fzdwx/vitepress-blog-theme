@@ -14,7 +14,7 @@ const posts = computed(() => getPages("post", theme.value));
     <main class="home-content">
       <article class="main-content">
         <Content
-          class="home-intro vp-doc prose dark:prose-invert max-w-[800px] mr-20 ml-20 pb-8"
+          class="home-intro vp-doc props-content max-w-[800px] mr-20 ml-20 pb-8"
         />
       </article>
       <PageList :pages="posts" />

@@ -15,15 +15,15 @@
 @import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/700-italic.css";
 @import "https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@4.5.11/800-italic.css";
 
-@font-face {
+/* @font-face {
   font-family: jinkaiFont;
   src: url("https://cdn.jsdelivr.net/gh/fzdwx/get@0.13/font/jinkai.ttf");
-}
-
+}*/
+/*
 @font-face {
   font-family: f1Font-Bold;
   src: url("https://cdn.jsdelivr.net/gh/fzdwx/get@0.13/font/f1.woff2");
-}
+} */
 
 @font-face {
   font-family: smileySans;
@@ -37,12 +37,11 @@
 } */
 
 :root {
-  --fjinkai: "jinkaiFont", sans-serif;
+  /* --fjinkai: "jinkaiFont", sans-serif; */
   --smileySans: "smileySans";
-  --wenkai: "LXGW WenKai Screen", sans-serif;
-  --zed: "zed", monospace;
+  --wenkai: "LXGW WenKai Screen", Calibri, Arial, sans-serif;
   --jet: "Jetbrains Mono", monospace;
-  --f1: "f1Font-Bold";
+  /* --f1: "f1Font-Bold"; */
 }
 
 body {
@@ -64,14 +63,13 @@ h6 {
 
 li,
 p {
-  font-family: var(--fjinkai);
+  font-family: var(--wenkai);
   font-size: 18px !important;
 }
 
 code {
   font-family: var(--jet) !important;
   font-size: 13px !important;
-  line-height: 1.7 !important;
 }
 
 .custom-block-title {
@@ -80,7 +78,8 @@ code {
 }
 
 .title a {
-  font-family: "f1Font-Bold";
-  font-size: 25px !important;
-  font-weight: bold !important;
+  /* font-family: var(--smileySans); */
+  font-weight: normal !important;
+  font-style: italic;
+  font-size: 22px !important;
 }

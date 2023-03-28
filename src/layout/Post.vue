@@ -21,8 +21,8 @@ const page = computed(() => {
       <h1>{{ page.title }}</h1>
     </header>
     <PageMeta :show-edit-link="true" :page="page" class="center" />
-    <article class="flex justify-center">
-      <Content class="post-content vp-doc" :class="pageName" />
+    <article class="flex justify-center mt-10 md:mt-6x">
+      <Content class="post-content vp-doc props-content" :class="pageName" />
     </article>
   </div>
 </template>
@@ -33,7 +33,7 @@ const page = computed(() => {
 }
 
 .post-content {
-  @apply prose dark:prose-invert max-w-[800px] mr-20 ml-20;
+  @apply max-w-[800px] mr-20 ml-20;
 }
 
 @media (min-width: 768px) {

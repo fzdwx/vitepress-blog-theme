@@ -4,6 +4,7 @@ import "./styles/reset.css";
 import "./styles/var.css";
 import "./styles/font.css";
 import "./styles/cover.css";
+import "./styles/prose.css";
 import { attachShortcuts } from "./shortcuts";
 import { ThemeConfig } from "./utils/config.type";
 

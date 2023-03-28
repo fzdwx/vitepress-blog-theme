@@ -18,7 +18,7 @@ const meta = (page: Page | undefined) => {
   if (!page) return <div></div>;
   return (
     <div>
-      <PageMeta showEditLink={true} page={page} class="center" />
+      <PageMeta showEditLink={true} page={page} class="center mt-10 md:mt-6" />
     </div>
   );
 };
@@ -63,7 +63,7 @@ export default () => {
   return (
     <div class={"center"}>
       <SidebarVue sidebarGroups={sidebarGroups.value} open={false} hasSidebar />
-      <VPDoc class={" prose  dark:prose-invert"}>
+      <VPDoc class={" props-content "}>
         {{
           "doc-before": () => {
             return (
