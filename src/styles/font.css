@@ -58,10 +58,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--smileySans);
+  font-family: var(--wenkai);
 }
 
-li:not(:where[class~="outline-link"]),
+li,
 p {
   font-family: var(--wenkai);
   font-size: 18px !important;
@@ -69,7 +69,7 @@ p {
 
 code {
   font-family: var(--jet) !important;
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 
 .custom-block-title {
