@@ -67,9 +67,16 @@ p {
   font-size: 18px !important;
 }
 
+.outline-link {
+  font-family: var(--vp-font-family-base);
+  font-size: 14px !important;
+  text-decoration: none;
+}
+
 code {
   font-family: var(--jet) !important;
   font-size: 14px !important;
+  line-height: 1.4;
 }
 
 .custom-block-title {
