@@ -43,7 +43,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   // head: [
   //   [
   //     "script",
-  //     { src: "https://www.googletagmanager.com/gtag/js?id=G-DGKZ9K6GHW" },
+  //     { src: "https://www.googletagmanager.com/gtag/js?id=your google" },
   //   ],
   //   [
   //     "script",
