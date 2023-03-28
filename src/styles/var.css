@@ -141,18 +141,15 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  /* --vp-c-brand: #646cff;
-  --vp-c-brand-light: #747bff;
-  --vp-c-brand-lighter: #9499ff; */
-  --vp-custom-block-tip-border: #646cff;
-  --vp-custom-block-tip-text: #454ce1;
-  --vp-custom-block-tip-bg: var(--vp-custom-block-tip-bg);
+  --vp-custom-block-tip-border: rgba(66, 184, 131, 0.5);
+  --vp-custom-block-tip-text: #155f3e;
+  --vp-custom-block-tip-bg: rgba(66, 184, 131, 0.05);
 }
 
 .dark {
-  --vp-custom-block-tip-border: #646cff;
-  --vp-custom-block-tip-text: #454ce1;
-  --vp-custom-block-tip-bg: var(--vp-c-bg-soft-up);
+  --vp-custom-block-tip-border: rgba(66, 184, 131, 0.5);
+  --vp-custom-block-tip-text: #155f3e;
+  --vp-custom-block-tip-bg: rgba(66, 184, 131, 0.05);
 }
 
 /**

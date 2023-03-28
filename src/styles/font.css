@@ -61,7 +61,7 @@ h6 {
   font-family: var(--smileySans);
 }
 
-li,
+li:not(:where[class~="outline-link"]),
 p {
   font-family: var(--wenkai);
   font-size: 18px !important;

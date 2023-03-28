@@ -1,5 +1,5 @@
 .home-intro a,
-.props-content a {
+.props-content a:not(:where([class~="outline-link"])) {
   color: var(--link-color) !important;
   box-shadow: 0 1px 0 var(--link-underline-shadow);
   font-weight: 500 !important;
@@ -8,7 +8,7 @@
 }
 
 .home-intro a:hover,
-.props-content a:hover {
+.props-content a:hover:not(:where([class~="outline-link"])) {
   color: var(--link-hover-color) !important;
   box-shadow: 0 2px 0px 0 var(--link-hover-underline-color);
   font-weight: 700 !important;

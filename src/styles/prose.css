@@ -1,8 +1,4 @@
-.props-content {
-  @apply prose  prose-gray dark:prose-invert;
-}
-
-.props-content blockquote {
+.prose blockquote {
   font-weight: normal;
   font-style: normal;
   color: inherit;
@@ -12,13 +8,13 @@
 }
 
 header > h1 {
-  font-weight: bold !important;
+  font-weight: normal !important;
   font-size: 2.25em;
   margin-top: 0;
   line-height: 1.1111111;
 }
 
-.props-content .header-anchor {
+.prose .header-anchor {
   float: left;
   margin-left: -0.87em;
   padding-right: 0.23em;
@@ -28,15 +24,36 @@ header > h1 {
   transition: color 0.25s, opacity 0.25s;
 }
 
-.props-content p {
-  @apply my-[0.5em];
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  letter-spacing: normal;
+  font-weight: normal;
 }
 
-.props-content h1,
-.props-content h2,
-.props-content h3,
-.props-content h4,
-.props-content h5,
-.props-content h6 {
-  letter-spacing: normal;
+.prose h2 {
+  font-size: 2.1em !important;
+}
+
+.prose h3 {
+  font-size: 1.8em !important;
+}
+
+.prose h4 {
+  font-size: 1.6em !important;
+}
+
+.prose h5 {
+  font-size: 1.4em !important;
+}
+
+.prose h6 {
+  font-size: 1.2em !important;
+}
+
+#VPSidebarNav > div > section > div.item > h2 {
+  font-size: 1.5em !important;
 }

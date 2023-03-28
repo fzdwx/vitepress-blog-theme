@@ -63,7 +63,7 @@ export default () => {
   return (
     <div class={"center"}>
       <SidebarVue sidebarGroups={sidebarGroups.value} open={false} hasSidebar />
-      <VPDoc class={" props-content "}>
+      <VPDoc class={"  prose  prose-gray dark:prose-invert"}>
         {{
           "doc-before": () => {
             return (
