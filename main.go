@@ -3,7 +3,9 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io/fs"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -29,6 +31,11 @@ var (
 		"vite.config.ts",
 		"tailwind.config.js",
 		"tsconfig.json",
+	}
+
+	// update theme include once
+	includeOnce = []string{
+		".vitepress/theme/rss.ts",
 	}
 
 	// newSite
@@ -109,6 +116,18 @@ func update() *cobra.Command {
 				if err != nil {
 					perr("copy file", err)
 					return
+				}
+			}
+
+			for i := range includeOnce {
+				path := includeDir[i]
+				_, err := os.Stat(path)
+				if errors.Is(err, fs.ErrNotExist) {
+					err = cp.Copy(filepath.Join(dir, path), path)
+					if err != nil {
+						perr("copy file", err)
+						return
+					}
 				}
 			}
 

@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { VitePressData } from "vitepress";
 import { ThemeConfig } from "./config.type";
 //@ts-ignore
 import { data as contents, Page } from "./content.data";
