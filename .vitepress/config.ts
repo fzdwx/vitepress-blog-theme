@@ -40,6 +40,21 @@ export default defineConfigWithTheme<ThemeConfig>({
       { icon: "github", link: "https://github.com/fzdwx/vitepress-blog-theme" },
     ],
   },
+  // head: [
+  //   [
+  //     "script",
+  //     { src: "https://www.googletagmanager.com/gtag/js?id=G-DGKZ9K6GHW" },
+  //   ],
+  //   [
+  //     "script",
+  //     {},
+  //     `window.dataLayer = window.dataLayer || [];
+  //     function gtag(){dataLayer.push(arguments);}
+  //     gtag('js', new Date());
+
+  //     gtag('config', 'your google');`,
+  //   ],
+  // ],
   transformHtml: (_, id, { pageData }) => {
     if (!/[\\/]404\.html$/.test(id))
       links.push({
