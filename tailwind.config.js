@@ -18,6 +18,21 @@ module.exports = {
           },
         },
       },
+      animation: {
+        text: "text 5s ease infinite",
+      },
+      keyframes: {
+        text: {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
+      },
       colors: {
         "dark-text": "#fffff5",
         "dark-red": "#d5a6bd",

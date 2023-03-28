@@ -77,9 +77,13 @@ code {
   font-family: var(--smileySans);
 }
 
-.title a {
+.VPNavBarTitle .title {
   /* font-family: var(--smileySans); */
   font-weight: normal !important;
   font-style: italic;
   font-size: 22px !important;
+  /* background-image: linear-gradient(to right, var(--tw-gradient-stops)); */
+  /* @apply bg-gradient-to-r bg-clip-text  text-transparent
+  from-blue-2 to-cyna-1
+  animate-text; */
 }
