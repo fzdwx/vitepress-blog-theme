@@ -120,7 +120,7 @@ func update() *cobra.Command {
 			}
 
 			for i := range includeOnce {
-				path := includeDir[i]
+				path := includeOnce[i]
 				_, err := os.Stat(path)
 				if errors.Is(err, fs.ErrNotExist) {
 					err = cp.Copy(filepath.Join(dir, path), path)
