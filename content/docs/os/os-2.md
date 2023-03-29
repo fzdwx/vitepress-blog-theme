@@ -6,6 +6,7 @@ date: 2023-1-24T13:54:36+08:00
 tags: [os, qwe]
 sidebar: true
 summary: "操作系统的特权级机制-2"
+order: 200
 ---
 
 ## asdas

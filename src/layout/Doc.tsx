@@ -47,12 +47,18 @@ export default () => {
     docGroups.value.forEach((pages, group) => {
       const item: DefaultTheme.SidebarItem = {
         text: group,
-        items: pages.map((page) => {
-          return {
-            text: page.title,
-            link: page.url,
-          };
-        }),
+        items: pages
+          .sort((a, b) => {
+            if (a.frontmatter.order === undefined) return -1;
+            if (b.frontmatter.order === undefined) return 1;
+            return b.frontmatter.order - a.frontmatter.order;
+          })
+          .map((page) => {
+            return {
+              text: page.title,
+              link: page.url,
+            };
+          }),
       };
       siderBars.push(item);
     });
