@@ -20,7 +20,16 @@
 }
 
 .outline-link.active {
-  color: var(--link-hover-underline-color) !important;
+  color: var(--link-hover-color) !important;
+}
+
+#VPSidebarNav > div > section > div.item > h2 {
+  font-size: 1.1em !important;
+}
+
+.VPSidebarItem .item .text {
+  font-size: 0.9em !important;
+  padding-right: 10px;
 }
 
 /* Doc.tsx  */
