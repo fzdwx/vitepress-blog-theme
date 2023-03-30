@@ -51,6 +51,7 @@
     "getCurrentScope": true,
     "getPage": true,
     "getPages": true,
+    "gist": true,
     "h": true,
     "ignorableWatch": true,
     "inBrowser": true,
