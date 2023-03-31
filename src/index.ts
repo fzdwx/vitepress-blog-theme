@@ -5,7 +5,7 @@ import "./styles/var.css";
 import "./styles/font.css";
 import "./styles/cover.css";
 import "./styles/prose.css";
-import { attachShortcuts } from "./shortcuts";
+import { attachShortcuts } from "./shortcodes";
 import { ThemeConfig } from "./utils/config.type";
 
 export { attachShortcuts, Layout };

@@ -1,5 +1,6 @@
 import Center from "./Center";
 import Gist from "./Gist";
+import Douban from "./Douban";
 import { App } from "vue";
 
 /**
@@ -10,6 +11,7 @@ const attachShortcuts = (app: App) => {
   //@ts-ignore
   app.component("Center", Center);
   app.component("Gist", Gist);
+  app.component("Douban", Douban);
 };
 
 export { attachShortcuts };

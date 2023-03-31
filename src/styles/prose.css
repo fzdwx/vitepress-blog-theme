@@ -36,12 +36,18 @@ header > h1 {
 .prose h6 {
   letter-spacing: normal;
   font-weight: normal;
+  margin: 0;
+  @apply pb-2 pt-6;
+}
+
+.prose h1 {
+  font-size: 2.5em !important;
 }
 
 .prose h2 {
   border-top: none;
-  padding-top: 0;
   font-size: 2.1em !important;
+  @apply pb-2;
 }
 
 .prose h3 {
