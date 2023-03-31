@@ -23,7 +23,7 @@ const page = computed(() => {
     <PageMeta :show-edit-link="true" :page="page" class="center" />
     <article class="flex justify-center mt-10 md:mt-6x">
       <Content
-        class="post-content vp-doc prose prose-gray dark:prose-invert"
+        class="post-content vp-doc prose dark:prose-invert"
         :class="pageName"
       />
     </article>

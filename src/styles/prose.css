@@ -24,6 +24,10 @@ header > h1 {
   transition: color 0.25s, opacity 0.25s;
 }
 
+.dark .dark\:prose-invert {
+  /* --tw-prose-invert-headings: #d1d5db; */
+}
+
 .prose h1,
 .prose h2,
 .prose h3,

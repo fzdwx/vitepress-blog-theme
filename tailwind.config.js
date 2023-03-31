@@ -15,6 +15,8 @@ module.exports = {
             "--tw-prose-code": "#3c3c43",
             "--tw-prose-invert-headings": "#fffff5db",
             "--tw-prose-invert-code": "#fffff5db",
+            "--tw-prose-invert-body": "#fffff5db",
+            "--tw-prose-invert-bold": "#fffff5db",
           },
         },
       },
@@ -34,7 +36,7 @@ module.exports = {
         },
       },
       colors: {
-        "dark-text": "#fffff5",
+        "dark-text": "#fffff5db",
         "dark-red": "#d5a6bd",
         "blue-1": "#a175ff",
         "blue-2": "#a394f0",
