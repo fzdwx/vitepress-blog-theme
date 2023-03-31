@@ -43,18 +43,20 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	Version = "0.4.1"
+	Version = "0.4.2"
 )
 
 func main() {
 	time.LoadLocation("Asia/Shanghai")
 
 	cmd := root()
-	cmd.AddCommand(sync())    // sync issue
-	cmd.AddCommand(update())  // update theme
-	cmd.AddCommand(initCmd()) // new site
-	cmd.AddCommand(newCmd())  // new page
-	cmd.AddCommand(devCmd())  // dev cmd `run vitepress dev`
+	cmd.AddCommand(sync())       // sync issue
+	cmd.AddCommand(update())     // update theme
+	cmd.AddCommand(initCmd())    // new site
+	cmd.AddCommand(newCmd())     // new page
+	cmd.AddCommand(devCmd())     // dev cmd `run vitepress dev`
+	cmd.AddCommand(buildCmd())   // dev cmd `run vitepress build`
+	cmd.AddCommand(previewCmd()) // dev cmd `run vitepress preview`
 	cmd.AddCommand(versionCmd())
 	cmd.AddCommand(logCmd())
 
@@ -232,15 +234,39 @@ func devCmd() *cobra.Command {
 		Use:   "dev",
 		Short: "bang dev # 启动 vitepress dev",
 		Run: func(_ *cobra.Command, _ []string) {
-			command := exec.Command("./node_modules/.bin/vitepress", "dev")
-			command.Stdout = os.Stdout
-			command.Stderr = os.Stderr
-
-			if err := command.Run(); err != nil {
-				perr("vitepress dev", err)
-				return
-			}
+			vite("dev")
 		},
+	}
+}
+
+func buildCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "build",
+		Short: "bang build # 启动 vitepress build",
+		Run: func(_ *cobra.Command, _ []string) {
+			vite("build")
+		},
+	}
+}
+
+func previewCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "preview",
+		Short: "bang preview # 启动 vitepress preview",
+		Run: func(_ *cobra.Command, _ []string) {
+			vite("preview")
+		},
+	}
+}
+
+func vite(cmd string) {
+	command := exec.Command("./node_modules/.bin/vitepress", cmd)
+	command.Stdout = os.Stdout
+	command.Stderr = os.Stderr
+
+	if err := command.Run(); err != nil {
+		perr("vitepress "+cmd, err)
+		return
 	}
 }
 
@@ -262,6 +288,10 @@ func logCmd() *cobra.Command {
 			log := `# bang
 
 vitepress-blog-theme 的辅助工具
+
+## v0.4.2
+
+1. 新增 build, preview 命令, 用于启动 vitepress build, vitepress preview
 
 ## v0.4.0
 
