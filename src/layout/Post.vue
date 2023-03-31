@@ -17,16 +17,20 @@ const page = computed(() => {
 
 <template>
   <div class="post" v-if="page !== undefined">
-    <header class="post-title center">
-      <h1>{{ page.title }}</h1>
-    </header>
-    <PageMeta :show-edit-link="true" :page="page" class="center" />
-    <article class="flex justify-center mt-10 md:mt-6x">
-      <Content
-        class="post-content vp-doc prose dark:prose-invert"
-        :class="pageName"
-      />
-    </article>
+    <div class="post-main">
+      <div class="post-container">
+        <div class="mt-10 md:mt-6x">
+          <header class="post-title text-center">
+            <h1>{{ page.title }}</h1>
+          </header>
+          <PageMeta :show-edit-link="true" :page="page" />
+          <Content
+            class="post-content vp-doc prose dark:prose-invert"
+            :class="pageName"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,19 +39,19 @@ const page = computed(() => {
   width: 100%;
 }
 
-.post-content {
-  @apply max-w-[800px] mr-20 ml-20;
+.post-main {
+  @apply flex justify-center content-center;
 }
 
-@media (min-width: 768px) {
-  .post {
-    padding: 48px 32px 128px;
+@media screen and (max-width: 600px) {
+  .post-container {
+    @apply m-3 w-[95%] py-10 px-5;
   }
 }
 
-@media (min-width: 960px) {
-  .post {
-    padding: 32px 32px 0;
+@media screen and (min-width: 600px) {
+  .post-content {
+    @apply max-w-[900px] min-w-[700px] xl:mr-20 xl:ml-20;
   }
 }
 
