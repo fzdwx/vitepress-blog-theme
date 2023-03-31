@@ -6,7 +6,7 @@ interface DoubanProps {
   to?: string; // 跳转链接
 }
 
-const getDoubanInfo = (id: string, dataRef: Ref<{}>) => {
+const getDoubanInfo = (id: string, dataRef: Ref<Data | undefined>) => {
   if (window == undefined) {
     return;
   }
@@ -15,10 +15,16 @@ const getDoubanInfo = (id: string, dataRef: Ref<{}>) => {
   let data = s.getItem(`douban-movie-${id}`);
   if (!data) {
     fetch(`https://douban.8610000.xyz/data/${id}.json`).then((res) => {
-      res.json().then((j) => {
-        s.setItem(`douban-movie-${id}`, j);
-        dataRef.value = j;
-      });
+      res
+        .json()
+        .then((j) => {
+          console.log(j);
+          s.setItem(`douban-movie-${id}`, JSON.stringify(j));
+          dataRef.value = j;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     });
   } else {
     const obj = JSON.parse(data);
@@ -26,17 +32,37 @@ const getDoubanInfo = (id: string, dataRef: Ref<{}>) => {
   }
 };
 
-const directorName = (data: Ref, directors: string[]) => {
-  if (directors.length === 0) {
+const directorName = (directors: Data["directors"]) => {
+  if (directors == undefined) {
     return "未知";
   }
-  // @ts-ignore
   return directors.map((d) => d.name).join(",");
 };
 
+interface Data {
+  title: string;
+  rating: {
+    value: number;
+  };
+  directors: [
+    {
+      name: string;
+    }
+  ];
+  genres: string[];
+  year: string;
+  intro: string;
+  pic: {
+    normal: string;
+  };
+}
+
 export default ({ code, to }: DoubanProps) => {
-  const data = ref();
+  const data = ref<Data>();
   getDoubanInfo(code, data);
+
+  const moive = computed(() => data.value);
+
   return (
     <div class="post-preview">
       <div class="post-preview--meta">
@@ -51,27 +77,29 @@ export default ({ code, to }: DoubanProps) => {
                 to
               )}
             >
-              {data.value.title}
+              {moive.value?.title}
             </a>
           </div>
           <div class="rating">
             <div
               class={`rating-star allstar ${Math.ceil(
-                data.value.rating.value
+                moive.value?.rating.value || 0
               )}`}
             />
-            <div class="rating-average"> {data.value.rating.value}</div>
+            <div class="rating-average"> {moive.value?.rating.value}</div>
           </div>
           <time class="post-preview--date">
-            导演: {directorName(data, data.value.directors)} / {/*  */}
-            类型：{data.value.genres} /{/*  */}
-            上映时间：{data.value.year}
+            导演:
+            {directorName(
+              moive.value?.directors || ([{}] as Data["directors"])
+            )}
+            / 类型：{moive.value?.genres} / 上映时间：{moive.value?.year}
           </time>
           <section
             style="max-height:75px;overflow:hidden;"
             class="post-preview--excerpt"
           >
-            {data.value.intro.replace(/\s*/g, "")}
+            {moive.value?.intro.replace(/\s*/g, "")}
           </section>
         </div>
       </div>
@@ -79,7 +107,7 @@ export default ({ code, to }: DoubanProps) => {
         referrerpolicy="no-referrer"
         loading="lazy"
         class="post-preview--image"
-        src={data.value.pic.normal}
+        src={moive.value?.pic.normal}
       />
     </div>
   );
