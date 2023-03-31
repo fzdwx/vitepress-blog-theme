@@ -43,7 +43,7 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	Version = "0.4.2"
+	Version = "0.4.3"
 )
 
 func main() {
@@ -233,8 +233,8 @@ func devCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "dev",
 		Short: "bang dev # 启动 vitepress dev",
-		Run: func(_ *cobra.Command, _ []string) {
-			vite("dev")
+		Run: func(_ *cobra.Command, args []string) {
+			vite("dev", args)
 		},
 	}
 }
@@ -243,8 +243,8 @@ func buildCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "build",
 		Short: "bang build # 启动 vitepress build",
-		Run: func(_ *cobra.Command, _ []string) {
-			vite("build")
+		Run: func(_ *cobra.Command, args []string) {
+			vite("build", args)
 		},
 	}
 }
@@ -253,14 +253,14 @@ func previewCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "preview",
 		Short: "bang preview # 启动 vitepress preview",
-		Run: func(_ *cobra.Command, _ []string) {
-			vite("preview")
+		Run: func(_ *cobra.Command, args []string) {
+			vite("preview", args)
 		},
 	}
 }
 
-func vite(cmd string) {
-	command := exec.Command("./node_modules/.bin/vitepress", cmd)
+func vite(cmd string, args []string) {
+	command := exec.Command("./node_modules/.bin/vitepress", cmd, strings.Join(args, " "))
 	command.Stdout = os.Stdout
 	command.Stderr = os.Stderr
 
@@ -288,6 +288,10 @@ func logCmd() *cobra.Command {
 			log := `# bang
 
 vitepress-blog-theme 的辅助工具
+
+## v0.4.3
+
+1. build,dev,preview 命令支持传递参数(e,g: bang dev -- --host)
 
 ## v0.4.2
 

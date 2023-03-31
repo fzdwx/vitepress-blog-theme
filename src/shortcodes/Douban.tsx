@@ -18,7 +18,6 @@ const getDoubanInfo = (id: string, dataRef: Ref<Data | undefined>) => {
       res
         .json()
         .then((j) => {
-          console.log(j);
           s.setItem(`douban-movie-${id}`, JSON.stringify(j));
           dataRef.value = j;
         })
