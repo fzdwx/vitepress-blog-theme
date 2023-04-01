@@ -16,9 +16,9 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: 1.20.2
-      - run: git clone https://github.com/fzdwx/vitepress-blog-theme
-      - run: cd vitepress-blog-theme && go install .
-      - run: cd .. && rm -rf vitepress-blog-theme
+      - run: cd /tmp && git clone https://github.com/fzdwx/vitepress-blog-theme
+      - run: cd /tmp/vitepress-blog-theme && go install .
+      - run: cd /tmp && rm -rf vitepress-blog-theme
       - uses: actions/checkout@v3
       - run: bang version
       - run: bang sync
