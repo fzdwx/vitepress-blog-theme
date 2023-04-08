@@ -4,6 +4,7 @@ import Home from "./../layout/Home.vue";
 import Post from "./Post.vue";
 import Tags from "./Tags.vue";
 import Doc from "./Doc";
+import Links from "./Links";
 
 const { frontmatter } = useData();
 </script>
@@ -23,6 +24,7 @@ const { frontmatter } = useData();
     />
     <Doc v-else-if="frontmatter.layout === 'doc'" />
     <Tags v-else-if="frontmatter.layout === 'tags'" />
+    <Links v-else-if="frontmatter.layout === 'links'" />
     <div v-else>
       <Content />
     </div>

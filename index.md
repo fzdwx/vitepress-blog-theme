@@ -11,3 +11,4 @@ Hello, this is a demo of the blog theme for [Vitepress](https://vitepress.dev/) 
 
 - rss: [rss.xml](/rss.xml)
 - sitemap: [sitemap.xml](/sitemap.xml)
+- [links](/links)

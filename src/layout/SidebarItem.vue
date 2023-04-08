@@ -4,7 +4,7 @@ import type { DefaultTheme } from "vitepress/theme";
 import IconChevronRight from "vitepress/dist/client/theme-default/components/icons/VPIconChevronRight.vue";
 //@ts-ignore
 import { useSidebarControl } from "vitepress/dist/client/theme-default/composables/sidebar";
-import Link from "./Link.vue";
+import Link from "../components/Link.vue";
 
 const props = defineProps<{
   item: DefaultTheme.SidebarItem;

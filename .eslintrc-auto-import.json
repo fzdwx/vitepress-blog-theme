@@ -17,7 +17,6 @@
     "InjectionKey": true,
     "PropType": true,
     "Ref": true,
-    "ThemeConfig": true,
     "VNode": true,
     "asyncComputed": true,
     "autoResetRef": true,
