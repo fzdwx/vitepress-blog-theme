@@ -1,6 +1,6 @@
 import { getRssFeed } from "./theme/rss";
 import { defineConfigWithTheme, PageData } from "vitepress";
-import { ThemeConfig } from "../src/utils/config.type";
+import { ThemeConfig } from "../src/types";
 
 const links: { url: string; lastmod: PageData["lastUpdated"] }[] = [];
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useData } from "vitepress";
-import { Page } from "../utils/content.data";
+import { Page } from "../types";
 
 import PageMetaTag from "./PageMetaTag";
 import PageMetaInfo from "./PageMetaInfo";

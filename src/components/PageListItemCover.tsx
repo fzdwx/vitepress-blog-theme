@@ -1,4 +1,4 @@
-import { Page } from "../utils/content.data";
+import { Page } from "../types";
 
 interface Props {
   page: Page;

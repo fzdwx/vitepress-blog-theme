@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Page } from "../utils/content.data";
+import { Page } from "../types";
 import PageListItem from "./PageListItem";
 
 defineProps<{

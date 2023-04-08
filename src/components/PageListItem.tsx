@@ -1,6 +1,6 @@
 import PageListItemCover from "./PageListItemCover";
 import PageListItemContent from "./PageListItemContent";
-import { Page } from "../utils/content.data";
+import { Page } from "../types";
 import { r, rs } from "../utils/core";
 
 interface Props {

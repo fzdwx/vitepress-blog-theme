@@ -34,6 +34,7 @@ export default defineConfig({
         "./src/components",
         "./src/shortcuts",
         "./src/utils",
+        "./src/types",
       ],
       vueTemplate: true,
       eslintrc: {

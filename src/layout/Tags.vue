@@ -2,7 +2,7 @@
 import { useUrlSearchParams } from "@vueuse/core";
 import { useData, useRouter } from "vitepress";
 import { ref } from "vue";
-import { Page } from "../utils/content.data";
+import { Page } from "../types";
 import { getPages, tagsUrl } from "../utils/core";
 
 import PageList from "./../components/PageList.vue";

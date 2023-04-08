@@ -1,15 +1,6 @@
+import { Page } from "@/types";
 import dayjs from "dayjs";
 import { createContentLoader } from "vitepress";
-
-interface Page {
-  title: string;
-  url: string;
-  date: string | number;
-  update: string | number; // default is update
-  frontmatter: Record<string, any>;
-  src: string; // markdown content
-  desc: string; // description
-}
 
 function parseDesc(src: string | undefined, desc: string): string {
   if (desc && desc !== "") {
@@ -36,8 +27,6 @@ function parseSrc(src: string | undefined): string {
 
   return pairs.slice(2).join("---");
 }
-
-export type { Page };
 
 export default createContentLoader("./content/**/*.md", {
   includeSrc: true,

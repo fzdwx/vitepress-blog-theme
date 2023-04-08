@@ -1,5 +1,5 @@
 import { formatDesc } from "../utils/core";
-import { Page } from "../utils/content.data";
+import { Page } from "../types";
 import PageMeta from "../components/PageMeta.vue";
 interface Props {
   hasCover: boolean;

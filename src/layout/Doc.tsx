@@ -1,4 +1,4 @@
-import { Page } from "@/utils/content.data";
+import { Page } from "@/types";
 import { DefaultTheme, useData, useRoute } from "vitepress";
 import VPDoc from "vitepress/dist/client/theme-default/components/VPDoc.vue";
 import PageMeta from "../components/PageMeta.vue";
