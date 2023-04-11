@@ -1,5 +1,5 @@
 import { createContentLoader, type SiteConfig } from "vitepress";
-import { Feed } from "feed";
+import { Author, Feed } from "feed";
 import path from "path";
 import { resolve } from "path";
 import { writeFileSync, createWriteStream } from "fs";
@@ -10,10 +10,12 @@ export const getRssFeed = ({
   baseUrl,
   links,
   copyright,
+  author,
 }: {
   baseUrl: string;
   copyright: string;
   links: any;
+  author?: Author;
 }) => {
   return async (config: SiteConfig) => {
     const posts = await createContentLoader("./content/**/*.md", {
@@ -27,7 +29,7 @@ export const getRssFeed = ({
         +new Date(a.frontmatter.date as string)
     );
 
-    rss(config, baseUrl, copyright, posts);
+    rss(config, baseUrl, copyright, posts, author);
 
     await sitemap(baseUrl, config, links);
   };
@@ -46,7 +48,8 @@ function rss(
   config: SiteConfig<any>,
   baseUrl: string,
   copyright: string,
-  posts: any[]
+  posts: any[],
+  author?: Author
 ) {
   const feed = new Feed({
     title: config.site.title,
@@ -57,6 +60,7 @@ function rss(
     image: `${baseUrl}/favicon.ico`,
     favicon: `${baseUrl}/favicon.ico`,
     copyright: copyright,
+    author: author,
   });
   for (const { url, excerpt, frontmatter, html } of posts) {
     feed.addItem({

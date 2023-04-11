@@ -63,6 +63,10 @@ export default defineConfigWithTheme<ThemeConfig>({
       });
   },
   buildEnd: getRssFeed({
+    author: {
+      name: "fzdwx",
+      email: "likelovec@gmail.com",
+    },
     links: links,
     baseUrl: "https://vitepress-blog-theme.vercel.app",
     copyright:

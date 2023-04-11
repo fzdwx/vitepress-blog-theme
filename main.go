@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"io/fs"
 	"os"
 	"os/exec"
@@ -19,9 +20,11 @@ import (
 	"github.com/fzdwx/infinite/components/input/text"
 	"github.com/fzdwx/infinite/components/selection/singleselect"
 	"github.com/google/go-github/v50/github"
+	"github.com/mmcdole/gofeed"
 	cp "github.com/otiai10/copy"
 	"github.com/spf13/cobra"
 	"golang.org/x/oauth2"
+	"gopkg.in/yaml.v3"
 )
 
 var (
@@ -58,6 +61,7 @@ func main() {
 	cmd.AddCommand(buildCmd())   // dev cmd `run vitepress build`
 	cmd.AddCommand(previewCmd()) // dev cmd `run vitepress preview`
 	cmd.AddCommand(versionCmd())
+	cmd.AddCommand(genFeedsCmd())
 	cmd.AddCommand(logCmd())
 
 	cmd.Execute()
@@ -227,6 +231,39 @@ func newCmd() *cobra.Command {
 	cmd.Flags().StringVarP(&flagGroup, "group", "g", "", "文档分组(仅在 layout 为 doc 时有效)")
 
 	return cmd
+}
+
+func genFeedsCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "feed",
+		Short: "读取 links.md 中的 feeds 字段生成 links.json",
+		Run: func(_ *cobra.Command, _ []string) {
+			f, err := os.Open("links.md")
+			if err != nil {
+				perr("open links.md", err)
+				return
+			}
+			defer f.Close()
+			bytes, err := io.ReadAll(f)
+			if err != nil {
+				perr("read links.md", err)
+				return
+			}
+			linksMd := string(bytes)
+			pairs := strings.Split(linksMd, "---")
+			if len(pairs) < 3 {
+				fmt.Println("links.md 格式错误")
+				return
+			}
+
+			var links Links
+			err = yaml.Unmarshal([]byte(pairs[1]), &links)
+			if err != nil {
+				perr("unmarshal links.md", err)
+			}
+			genFeeds(links)
+		},
+	}
 }
 
 func devCmd() *cobra.Command {
@@ -401,9 +438,40 @@ func makeTemplate(issues []Issue) {
 	}
 }
 
-type Package struct {
-	Dependencies    map[string]string `json:"dependencies"`
-	DevDependencies map[string]string `json:"devDependencies"`
+func genFeeds(links Links) error {
+	fp := gofeed.NewParser()
+	var feedItems []FeedItem
+	for i := range links.Feeds {
+		feed, err := fp.ParseURL(links.Feeds[i])
+		if err != nil {
+			return err
+		}
+		var name = feed.Title
+		if name == "" && len(feed.Authors) > 0 {
+			name = feed.Authors[0].Name
+		}
+		for j := range feed.Items {
+			item := feed.Items[j]
+			feedItems = append(feedItems, FeedItem{
+				Name:  name,
+				Title: item.Title,
+				Url:   item.Link,
+				Time:  item.Published,
+			})
+		}
+	}
+
+	os.RemoveAll("./links.json")
+	f, err := os.Create("./links.json")
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	feeds := Feeds{
+		Items: feedItems,
+	}
+
+	return json.NewEncoder(f).Encode(feeds)
 }
 
 func cmpDep(dir string) {
@@ -483,27 +551,6 @@ func cmpDep(dir string) {
 	}
 }
 
-const postTemplate = `---
-title: "%s"
-date: "%s"
-layout: "post"
-tags: []
----
-
-`
-
-const docTemplate = `---
-group: "%s"
-title: "%s"
-date: "%s"
-layout: "doc"
-tags: []
----
-
-`
-
-const timeLayout = "2006-01-02T15:04:05Z07:00"
-
 func newPage(title, layout, group string) {
 	if layout == "" {
 		layout = "post"
@@ -545,23 +592,6 @@ func newPage(title, layout, group string) {
 	}
 }
 
-type Issue struct {
-	Number      int
-	Title       string
-	Body        string
-	Labels      []Label
-	LabelString string
-	CreateAt    string
-	UpdateAt    string
-	Url         string
-}
-
-type Label struct {
-	Id    int64
-	Name  string
-	Color string
-}
-
 func mapissues(issue *github.Issue) *Issue {
 	label, labelString := maplabels(issue.Labels)
 	i := &Issue{
@@ -600,3 +630,61 @@ func perr(msg string, err error) {
 		fmt.Println("Error:", msg)
 	}
 }
+
+type Package struct {
+	Dependencies    map[string]string `json:"dependencies"`
+	DevDependencies map[string]string `json:"devDependencies"`
+}
+
+type Issue struct {
+	Number      int
+	Title       string
+	Body        string
+	Labels      []Label
+	LabelString string
+	CreateAt    string
+	UpdateAt    string
+	Url         string
+}
+
+type Label struct {
+	Id    int64
+	Name  string
+	Color string
+}
+
+type Links struct {
+	Feeds []string `yaml:"feeds"`
+}
+
+type Feeds struct {
+	Items []FeedItem `json:"items"`
+}
+
+type FeedItem struct {
+	Name  string `json:"name"`
+	Title string `json:"title"`
+	Url   string `json:"url"`
+	Time  string `json:"time"`
+}
+
+const postTemplate = `---
+title: "%s"
+date: "%s"
+layout: "post"
+tags: []
+---
+
+`
+
+const docTemplate = `---
+group: "%s"
+title: "%s"
+date: "%s"
+layout: "doc"
+tags: []
+---
+
+`
+
+const timeLayout = "2006-01-02T15:04:05Z07:00"

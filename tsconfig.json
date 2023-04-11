@@ -28,6 +28,7 @@
     "src/**/*.d.ts",
     "src/**/*.vue",
     "auto-imports.d.ts",
-    "components.d.ts"
+    "components.d.ts",
+    "src/utils/xml.js"
   ]
 }
