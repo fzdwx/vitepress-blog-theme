@@ -46,7 +46,7 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	Version = "0.4.3"
+	Version = "0.5.0"
 )
 
 func main() {
@@ -261,7 +261,10 @@ func genFeedsCmd() *cobra.Command {
 			if err != nil {
 				perr("unmarshal links.md", err)
 			}
-			genFeeds(links)
+			err = genFeeds(links)
+			if err != nil {
+				perr("gen feeds", err)
+			}
 		},
 	}
 }
@@ -325,6 +328,10 @@ func logCmd() *cobra.Command {
 			log := `# bang
 
 vitepress-blog-theme 的辅助工具
+
+## v0.5.0
+
+1. 新增命令 ` + "`feed`" + `, 用于读取 links.md 中的 feeds 字段生成 links.json
 
 ## v0.4.3
 
