@@ -8,7 +8,7 @@ on:
 
 env:
   token: ${{ secrets.TOKEN }}
-  repo: fzdwx.github.io
+  repo: vitepress-blog-theme
 
 jobs:
   update-issues:

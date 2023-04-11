@@ -2,7 +2,7 @@ name: Deploy
 on:
   workflow_dispatch: {}
   workflow_run:
-    workflows: ["SyncIssues"，"GenFeed"]
+    workflows: ["SyncIssues", "GenFeed"]
     types:
       - completed
   push:
