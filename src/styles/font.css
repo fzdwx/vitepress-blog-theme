@@ -79,13 +79,17 @@ code {
   line-height: 1.4;
 }
 
+.VPNavBarMenuLink {
+  font-family: var(--smileySans) !important;
+}
+
 .custom-block-title {
   font-size: 19px;
   font-family: var(--smileySans);
 }
 
 .VPNavBarTitle .title {
-  /* font-family: var(--smileySans); */
+  font-family: var(--smileySans);
   font-weight: normal !important;
   font-style: italic;
   font-size: 22px !important;
