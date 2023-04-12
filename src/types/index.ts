@@ -17,4 +17,11 @@ interface Links {
   desc?: string;
 }
 
-export type { Page, ThemeConfig, Links };
+interface FeedItem {
+  name: string;
+  title: string;
+  url: string;
+  time: string;
+}
+
+export type { Page, ThemeConfig, Links, FeedItem };

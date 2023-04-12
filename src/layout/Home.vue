@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useData } from "vitepress";
-import { getPages } from "../utils/core";
+import { getPages } from "../utils";
 
 import PageList from "./../components/PageList.vue";
 

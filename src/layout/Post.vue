@@ -2,7 +2,7 @@
 import { useRoute } from "vitepress";
 import { computed } from "vue";
 import PageMeta from "../components/PageMeta.vue";
-import { getPage } from "../utils/core";
+import { getPage } from "../utils";
 import MainContent from "../components/MainContent";
 
 const route = useRoute();

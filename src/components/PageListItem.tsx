@@ -1,7 +1,7 @@
 import PageListItemCover from "./PageListItemCover";
 import PageListItemContent from "./PageListItemContent";
 import { Page } from "../types";
-import { r, rs } from "../utils/core";
+import { r, rs } from "../utils";
 
 interface Props {
   showCover: boolean;

@@ -1,4 +1,4 @@
-import { formatDesc } from "../utils/core";
+import { formatDesc } from "../utils";
 import { Page } from "../types";
 import PageMeta from "../components/PageMeta.vue";
 interface Props {

@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { ThemeConfig } from "./config.type";
+import { ThemeConfig } from "../types";
 //@ts-ignore
 import { data as contents, Page } from "./content.data";
 

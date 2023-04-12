@@ -4,7 +4,7 @@ import Home from "./../layout/Home.vue";
 import Post from "./Post.vue";
 import Tags from "./Tags.vue";
 import Doc from "./Doc";
-import Links from "./Links";
+import Links from "./Links.vue";
 
 const { frontmatter } = useData();
 </script>

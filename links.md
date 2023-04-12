@@ -9,4 +9,5 @@ links:
 feeds:
   - https://fzdwx.github.io/rss.xml
   - https://blog.rxliuli.com/atom.xml
+feedsUrl: "/links.json"
 ---
