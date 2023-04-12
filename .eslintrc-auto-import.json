@@ -60,6 +60,7 @@
     "isReactive": true,
     "isReadonly": true,
     "isRef": true,
+    "linksItem": true,
     "mainContent": true,
     "makeDestructurable": true,
     "markRaw": true,

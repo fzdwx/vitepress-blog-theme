@@ -468,8 +468,8 @@ func genFeeds(links Links) error {
 		}
 	}
 
-	os.RemoveAll("./links.json")
-	f, err := os.Create("./links.json")
+	os.RemoveAll("./public/links.json")
+	f, err := os.Create("./public/links.json")
 	if err != nil {
 		return err
 	}
