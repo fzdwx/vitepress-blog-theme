@@ -29,6 +29,6 @@ jobs:
       - run: bang feed
       - run: git config --global user.name "github.action"
       - run: git config --global user.email "action@github.com"
-      - run: git add links.json
+      - run: git add public/links.json
       - run: git commit -a -m "update"
       - run: git push
