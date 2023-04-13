@@ -62,6 +62,7 @@ function rss(
     copyright: copyright,
     author: author,
   });
+  posts = posts.slice(0, 5);
   for (const { url, excerpt, frontmatter, html } of posts) {
     feed.addItem({
       title: frontmatter.title,

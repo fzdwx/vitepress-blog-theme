@@ -9,5 +9,6 @@ links:
 feeds:
   - https://fzdwx.github.io/rss.xml
   - https://blog.rxliuli.com/atom.xml
+  - https://manateelazycat.github.io/feed.xml
 feedsUrl: "/links.json"
 ---
