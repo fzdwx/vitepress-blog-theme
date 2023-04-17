@@ -7,6 +7,10 @@ import VPNavBarAppearance from "vitepress/dist/client/theme-default/components/V
 import VPNavBarSocialLinks from "vitepress/dist/client/theme-default/components/VPNavBarSocialLinks.vue";
 import VPNavBarExtra from "vitepress/dist/client/theme-default/components/VPNavBarExtra.vue";
 import VPNavBarHamburger from "vitepress/dist/client/theme-default/components/VPNavBarHamburger.vue";
+
+import { useData } from "vitepress";
+
+const { site } = useData();
 </script>
 
 <template>
@@ -28,6 +32,11 @@ import VPNavBarHamburger from "vitepress/dist/client/theme-default/components/VP
         <div class="content-body">
           <slot name="nav-bar-content-before" />
           <VPNavBarSearch class="search" />
+          <img
+            v-if="site.themeConfig.icon"
+            class="nav-icon"
+            :src="site.themeConfig.icon"
+          />
           <VPNavBarMenu class="menu" />
           <VPNavBarTranslations class="translations" />
           <VPNavBarAppearance class="appearance" />
@@ -46,6 +55,10 @@ import VPNavBarHamburger from "vitepress/dist/client/theme-default/components/VP
 </template>
 
 <style scoped>
+.nav-icon {
+  @apply w-8 mb-3 pr-1;
+}
+
 .VPNavBar {
   position: relative;
   border-bottom: 1px solid transparent;

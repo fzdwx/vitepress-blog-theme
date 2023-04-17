@@ -19,6 +19,9 @@ export default defineConfigWithTheme<ThemeConfig>({
         return `https://github.com/fzdwx/vitepress-blog-theme/blob/main/${path}`;
       },
     },
+    search: {
+      provider: "local",
+    },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       {

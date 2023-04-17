@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { useData } from "vitepress";
 import NavBar from "./NavBar.vue";
-
-const { site } = useData();
 </script>
 
 <template>
@@ -15,9 +12,7 @@ const { site } = useData();
       <template #nav-bar-title-after>
         <slot name="nav-bar-title-after" />
       </template>
-      <template #nav-bar-content-before>
-        <img class="nav-icon" :src="site.themeConfig.icon" />
-      </template>
+      <template #nav-bar-content-before> </template>
       <template #nav-bar-content-after>
         <slot name="nav-bar-content-after" />
       </template>
@@ -31,10 +26,6 @@ const { site } = useData();
   z-index: 1020;
   position: sticky;
   top: 0;
-}
-
-.nav-icon {
-  @apply w-8 mb-3 pr-1;
 }
 
 .header-bar {
