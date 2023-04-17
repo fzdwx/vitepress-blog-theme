@@ -21,7 +21,7 @@ specifiers:
   unplugin-icons: ^0.15.3
   unplugin-vue-components: ^0.24.1
   vite: ^4.2.1
-  vitepress: 1.0.0-alpha.71
+  vitepress: 1.0.0-alpha.72
   vue: ^3.2.47
 
 dependencies:
@@ -47,7 +47,7 @@ devDependencies:
   unplugin-auto-import: registry.npmmirror.com/unplugin-auto-import/0.15.2_@vueuse+core@9.13.0
   unplugin-icons: registry.npmmirror.com/unplugin-icons/0.15.3
   unplugin-vue-components: registry.npmmirror.com/unplugin-vue-components/0.24.1_vue@3.2.47
-  vitepress: registry.npmmirror.com/vitepress/1.0.0-alpha.71_@types+node@18.15.11
+  vitepress: registry.npmmirror.com/vitepress/1.0.0-alpha.72_@types+node@18.15.11
   vue: registry.npmmirror.com/vue/3.2.47
 
 packages:
@@ -2934,11 +2934,11 @@ packages:
     optionalDependencies:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
 
-  registry.npmmirror.com/vitepress/1.0.0-alpha.71_@types+node@18.15.11:
-    resolution: {integrity: sha512-UkmDuNO+paGq0ba5WVhwasR1BCQ0owlPStnjtCRd/cfzXB+VBAiZFK9pglVQaf/tDBFQOuHZkrkfgp5ka69hIg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.71.tgz}
-    id: registry.npmmirror.com/vitepress/1.0.0-alpha.71
+  registry.npmmirror.com/vitepress/1.0.0-alpha.72_@types+node@18.15.11:
+    resolution: {integrity: sha512-Ou7fNE/OVYLrKGQMHSTVG6AcNsdv7tm4ACrdhx93SPMzEDj8UgIb4RFa5CTTowaYf3jeDGi2EAJlzXVC+IE3dg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.72.tgz}
+    id: registry.npmmirror.com/vitepress/1.0.0-alpha.72
     name: vitepress
-    version: 1.0.0-alpha.71
+    version: 1.0.0-alpha.72
     hasBin: true
     dependencies:
       '@docsearch/css': registry.npmmirror.com/@docsearch/css/3.3.3
