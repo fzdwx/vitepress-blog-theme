@@ -47,7 +47,7 @@ var (
 		".git", "justfile", "README.md",
 		"main.go", "go.mod", "go.sum",
 	}
-	Version = "0.5.0"
+	Version = "0.6.0"
 )
 
 func main() {
