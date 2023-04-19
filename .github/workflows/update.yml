@@ -2,6 +2,8 @@ name: SyncIssues
 on:
   issues:
     types: [opened, edited, deleted, closed, locked, unlocked, labeled, pinned]
+  issue_comment：
+    types: [created, edited, deleted]
   # push:
   # branches:
   # - main
@@ -26,5 +28,5 @@ jobs:
       - run: git config --global user.name "github.action"
       - run: git config --global user.email "action@github.com"
       - run: git add .
-      - run: git commit -a -m "update"
+      - run: git commit -a -m "update issue"
       - run: git push

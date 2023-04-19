@@ -20,7 +20,7 @@ const position = (page: Page) => {
 
 <template>
   <div class="pages main-content">
-    <div class="post-entry mr-10 ml-10" v-for="page of pages" :class="{}">
+    <div class="post-entry mr-10 ml-10" v-for="page of pages">
       <PageListItem
         :position="position(page)"
         :showCover="showCover(page)"

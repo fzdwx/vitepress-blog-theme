@@ -41,6 +41,7 @@ require (
 	github.com/rivo/uniseg v0.4.3 // indirect
 	github.com/rotisserie/eris v0.5.4 // indirect
 	github.com/sahilm/fuzzy v0.1.0 // indirect
+	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	golang.org/x/crypto v0.7.0 // indirect
 	golang.org/x/exp v0.0.0-20230202163644-54bba9f4231b // indirect

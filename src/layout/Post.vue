@@ -4,6 +4,7 @@ import { computed } from "vue";
 import PageMeta from "../components/PageMeta.vue";
 import { getPage } from "../utils";
 import MainContent from "../components/MainContent";
+import CommentList from "../components/CommentList";
 
 const route = useRoute();
 
@@ -26,6 +27,12 @@ const page = computed(() => {
       class="post-content vp-doc prose dark:prose-invert"
       :class="pageName"
     />
+    <footer class="post-content" v-if="page.frontmatter.layout == 'issue'">
+      <CommentList
+        :id="page.frontmatter.id"
+        :editUrl="page.frontmatter.editLink"
+      />
+    </footer>
   </MainContent>
 </template>
 

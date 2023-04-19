@@ -7,6 +7,15 @@ import Doc from "./Doc";
 import Links from "./Links.vue";
 
 const { frontmatter } = useData();
+const shouldMb = () => {
+  const val = frontmatter.value;
+  return (
+    val.layout === "post" ||
+    val.layout === "issue" ||
+    val.layout === "tags" ||
+    val.layout === "links"
+  );
+};
 </script>
 
 <template>
@@ -14,6 +23,7 @@ const { frontmatter } = useData();
     class="ContentDispatch"
     :class="{
       'is-home': frontmatter.layout === 'home',
+      'should-mb': shouldMb(),
     }"
   >
     <Home v-if="frontmatter.layout === 'home'" />
@@ -37,6 +47,10 @@ const { frontmatter } = useData();
   flex-shrink: 0;
   margin: var(--vp-layout-top-height, 0px) auto 0;
   width: 100%;
+}
+
+.should-mb {
+  @apply pt-20;
 }
 
 .ContentDispatch.is-home {

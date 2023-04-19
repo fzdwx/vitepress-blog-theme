@@ -22,6 +22,7 @@ import (
 	"github.com/google/go-github/v50/github"
 	"github.com/mmcdole/gofeed"
 	cp "github.com/otiai10/copy"
+	"github.com/sourcegraph/conc"
 	"github.com/spf13/cobra"
 	"golang.org/x/oauth2"
 	"gopkg.in/yaml.v3"
@@ -86,11 +87,46 @@ func sync() *cobra.Command {
 				perr("list issue by repo", err)
 				return
 			}
+			dir := filepath.Join("public", "issues", "comment")
+			os.RemoveAll(dir)
+			os.MkdirAll(dir, 0755)
 
 			var issues []Issue
+			var wg conc.WaitGroup
 			for i := range issues_gh {
-				issues = append(issues, *mapissues(issues_gh[i]))
+				issue := issues_gh[i]
+				wg.Go(func() {
+					comments, _, err := client.Issues.ListComments(context.Background(), username, repo, issue.GetNumber(), nil)
+					if err != nil {
+						perr("list issue comment", err)
+						panic(err)
+					}
+
+					for j := range comments {
+						comment := comments[j]
+						s, _, err := client.Markdown(context.Background(), comment.GetBody(), &github.MarkdownOptions{Mode: "gfm"})
+						if err != nil {
+							perr("markdown", err)
+							panic(err)
+						}
+						comment.Body = &s
+					}
+
+					file, err := os.Create(filepath.Join(dir, fmt.Sprintf("%d.json", issue.GetNumber())))
+					if err != nil {
+						perr("create issue comment file", err)
+						panic(err)
+					}
+					err = json.NewEncoder(file).Encode(&comments)
+					if err != nil {
+						perr("write issue comment", err)
+						panic(err)
+					}
+				})
+
+				issues = append(issues, mapissues(issue))
 			}
+			wg.Wait()
 
 			makeTemplate(issues)
 		},
@@ -105,6 +141,7 @@ func update() *cobra.Command {
 			_init()
 			dir := "../vitepress-blog-theme-" + time.Now().Format("20060102")
 			os.RemoveAll(dir)
+			defer os.RemoveAll(dir)
 
 			// clone repo
 			cmd := exec.Command("git", "clone", "--depth=1", "https://github.com/fzdwx/vitepress-blog-theme.git", dir)
@@ -329,6 +366,10 @@ func logCmd() *cobra.Command {
 
 vitepress-blog-theme 的辅助工具
 
+## v0.6.0
+
+1. sync 命令 添加同步 评论功能
+
 ## v0.5.0
 
 1. 新增命令 ` + "`feed`" + `, 用于读取 links.md 中的 feeds 字段生成 links.json
@@ -376,6 +417,7 @@ var (
 	issueTemplate = `---
 # generated don't edit this file !!!
 # 自动化生成，不要编辑这个文件！！！
+id: {{ .Number }}
 title: "{{ .Title}}"
 layout: "issue"
 date: {{ .CreateAt }}
@@ -599,9 +641,9 @@ func newPage(title, layout, group string) {
 	}
 }
 
-func mapissues(issue *github.Issue) *Issue {
+func mapissues(issue *github.Issue) Issue {
 	label, labelString := maplabels(issue.Labels)
-	i := &Issue{
+	i := Issue{
 		Number:      issue.GetNumber(),
 		Title:       issue.GetTitle(),
 		Body:        issue.GetBody(),
