@@ -146,10 +146,10 @@ pageList.vue
 }
 
 .prose :where(li):not(:where([class~="not-prose"] *)) {
-  margin-top: none;
-  margin-bottom: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .vp-doc li + li {
-  margin-top: none;
+  margin-top: 0px;
 }
