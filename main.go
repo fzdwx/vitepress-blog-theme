@@ -123,7 +123,6 @@ func sync() *cobra.Command {
 						panic(err)
 					}
 				})
-
 				issues = append(issues, mapissues(issue))
 			}
 			wg.Wait()

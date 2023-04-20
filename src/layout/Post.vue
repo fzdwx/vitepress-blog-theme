@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from "vitepress";
+import { useData, useRoute } from "vitepress";
 import { computed } from "vue";
 import PageMeta from "../components/PageMeta.vue";
 import { getPage } from "../utils";
@@ -15,6 +15,19 @@ const pageName = computed(() =>
 const page = computed(() => {
   return getPage(route.path);
 });
+
+const { site } = useData();
+
+const showComment = () => {
+  if (
+    site.value.themeConfig.issues &&
+    site.value.themeConfig.issues.showComment
+  ) {
+    return true;
+  }
+
+  return false;
+};
 </script>
 
 <template>
@@ -27,7 +40,10 @@ const page = computed(() => {
       class="post-content vp-doc prose dark:prose-invert"
       :class="pageName"
     />
-    <footer class="post-content" v-if="page.frontmatter.layout == 'issue'">
+    <footer
+      class="post-content"
+      v-if="page.frontmatter.layout == 'issue' && showComment()"
+    >
       <CommentList
         :id="page.frontmatter.id"
         :editUrl="page.frontmatter.editLink"

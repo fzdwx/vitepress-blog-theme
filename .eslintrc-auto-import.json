@@ -20,6 +20,7 @@
     "VNode": true,
     "asyncComputed": true,
     "autoResetRef": true,
+    "commentList": true,
     "computed": true,
     "computedAsync": true,
     "computedEager": true,
