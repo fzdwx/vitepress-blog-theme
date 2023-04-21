@@ -72,7 +72,7 @@ refresh(state.value.tag);
 <template>
   <div class="Tags">
     <main>
-      <header class="ml-10 md:ml-8">
+      <header class="ml-10 md:ml-8 mb-8">
         <h1>
           {{ frontmatter.layoutTitleMap[state.layout] }}
           <span v-if="state.tag">:</span>
