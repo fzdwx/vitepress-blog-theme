@@ -6,7 +6,7 @@ export default ({ item }: { item: FeedItemInfo }) => {
       <header class="basis-1/6 opacity-50">
         {formatDate(item.time, "M/DD")}
       </header>
-      <section class=" hover:text-dark-red  basis-2/3 whitespace-nowrap overflow-hidden w-full">
+      <section class=" hover:text-cyna-3  basis-2/3 whitespace-nowrap overflow-hidden w-full">
         <a
           target="_blank"
           class="links-feed-item"

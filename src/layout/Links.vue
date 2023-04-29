@@ -71,6 +71,14 @@ const changeFeed = (name: string) => {
   collectItemInfo(state.currentName)
 }
 
+const activeName = (name: string) => {
+  if (state.currentName == name) {
+    return "text-cyna-3"
+  } else {
+    return "text-gray-500"
+  }
+}
+
 const { frontmatter } = useData();
 </script>
 <template>
@@ -78,11 +86,11 @@ const { frontmatter } = useData();
     <header class="mt-10 center">
       <h1>{{ frontmatter.title || "Links" }}</h1>
     </header>
-    <div class="flex">
+    <div class="flex mt-10">
       <div class=" mx-2 " v-for="user in state.users">
-        <span class=" cursor-pointer" @click='() => changeFeed(user.name)'>
+        <p :class="activeName(user.name)" class="cursor-pointer" @click='() => changeFeed(user.name)'>
           {{ user.name }}
-        </span>
+        </p>
       </div>
     </div>
     <Feeds :itemsGroup="state.itemsGroup" />
