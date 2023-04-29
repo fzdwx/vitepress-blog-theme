@@ -1,8 +1,8 @@
-import { FeedItem } from "@/types";
+import { FeedItemInfo } from "@/types";
 
-export default ({ item }: { item: FeedItem }) => {
+export default ({ item }: { item: FeedItemInfo }) => {
   return (
-    <div class=" w-[95%] min-w-[400px] md:w-[700px] xl:w-[800px] 2xl:w-[800px] flex flex-row links-feed-div">
+    <div class="ml-5 w-[95%] min-w-[400px] md:w-[700px] xl:w-[800px] 2xl:w-[800px] flex flex-row links-feed-div">
       <header class="basis-1/6 opacity-50">
         {formatDate(item.time, "M/DD")}
       </header>
@@ -11,7 +11,6 @@ export default ({ item }: { item: FeedItem }) => {
           target="_blank"
           class="links-feed-item"
           href={item.url}
-          noIcon={true}
         >
           {item.title}
         </a>

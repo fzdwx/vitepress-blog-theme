@@ -19,9 +19,15 @@ interface Links {
 
 interface FeedItem {
   name: string;
-  title: string;
-  url: string;
-  time: string;
+  avatar: string;
+  info: FeedItemInfo[];
 }
 
-export type { Page, ThemeConfig, Links, FeedItem };
+interface FeedItemInfo {
+	name : string ;
+	title: string ;
+	url:   string ;
+	time:  string ;
+}
+
+export type { Page, ThemeConfig, Links, FeedItem,FeedItemInfo };

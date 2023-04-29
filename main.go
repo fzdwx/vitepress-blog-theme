@@ -490,7 +490,8 @@ func genFeeds(links Links) error {
 	fp := gofeed.NewParser()
 	var feedItems []FeedItem
 	for i := range links.Feeds {
-		feed, err := fp.ParseURL(links.Feeds[i])
+		f := links.Feeds[i]
+		feed, err := fp.ParseURL(f.Url)
 		if err != nil {
 			return err
 		}
@@ -498,15 +499,22 @@ func genFeeds(links Links) error {
 		if name == "" && len(feed.Authors) > 0 {
 			name = feed.Authors[0].Name
 		}
+
+		var feedItemInfoList []FeedItemInfo
 		for j := range feed.Items {
 			item := feed.Items[j]
-			feedItems = append(feedItems, FeedItem{
+			feedItemInfoList = append(feedItemInfoList, FeedItemInfo{
 				Name:  name,
 				Title: item.Title,
 				Url:   item.Link,
 				Time:  item.Published,
 			})
 		}
+		feedItems = append(feedItems, FeedItem{
+			Name:   name,
+			Avatar: f.Avatar,
+			Info:   feedItemInfoList,
+		})
 	}
 
 	os.RemoveAll("./public/links.json")
@@ -702,7 +710,12 @@ type Label struct {
 }
 
 type Links struct {
-	Feeds []string `yaml:"feeds"`
+	Feeds []LiksFeeds `yaml:"feeds"`
+}
+
+type LiksFeeds struct {
+	Avatar string `yaml:"avatar"`
+	Url    string `yaml:"url"`
 }
 
 type Feeds struct {
@@ -710,6 +723,12 @@ type Feeds struct {
 }
 
 type FeedItem struct {
+	Name   string         `json:"name"`
+	Avatar string         `json:"avatar"`
+	Info   []FeedItemInfo `json:"info"`
+}
+
+type FeedItemInfo struct {
 	Name  string `json:"name"`
 	Title string `json:"title"`
 	Url   string `json:"url"`

@@ -1,4 +1,6 @@
+import { computed, ref } from "vue";
 import "../styles/douban.css";
+import { rs } from "@/utils";
 
 interface DoubanProps {
   code: string; // 豆瓣id
@@ -104,7 +106,6 @@ export default ({ code, to }: DoubanProps) => {
       </div>
       <img
         referrerpolicy="no-referrer"
-        loading="lazy"
         class="post-preview--image"
         src={moive.value?.pic.normal}
       />

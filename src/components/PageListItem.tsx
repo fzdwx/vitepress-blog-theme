@@ -51,7 +51,6 @@ export default (props: Props) => {
 
           <div class={rs(position !== "top", "col-span-3")}>
             <PageListItemContent
-              class="PageListItemContent"
               hasCover={showCover}
               page={page}
             />
@@ -65,7 +64,6 @@ export default (props: Props) => {
       return (
         <div>
           <PageListItemContent
-            class="PageListItemContent"
             hasCover={showCover}
             page={page}
           />

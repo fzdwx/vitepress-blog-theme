@@ -1,7 +1,7 @@
 import FeedsItem from "@/components/FeedsItem.jsx";
-import { FeedItem } from "@/types";
+import { FeedItemInfo } from "@/types";
 
-export default ({ itemsGroup }: { itemsGroup: Record<string, FeedItem[]> }) => {
+export default ({ itemsGroup }: { itemsGroup: Record<string, FeedItemInfo[]> }) => {
   return (
     <div>
       {Object.keys(itemsGroup).map((key) => {
@@ -9,7 +9,7 @@ export default ({ itemsGroup }: { itemsGroup: Record<string, FeedItem[]> }) => {
           <div class="flex flex-col my-10">
             <h3 class="text-2xl font-bold mb-2">{key}</h3>
             {itemsGroup[key].map((item) => {
-              return <FeedsItem class="ml-5" item={item} />;
+              return <FeedsItem item={item} />;
             })}
           </div>
         );

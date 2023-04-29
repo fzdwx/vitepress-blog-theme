@@ -6,13 +6,13 @@ interface Props {
 
 const tagList = (tags: string[], layout: string) => {
   return tags.map((tag) => {
-    return (
-      <div class="px-2  text-darkbg meta-tag py-1 bg-pink1 dark:text-dark-text dark:bg-slate-300/20 rounded-lg text-xs mr-2">
-        <a class={""} href={tagsUrl(layout, tag)}>
+   return (
+    <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+       <a class={""} href={tagsUrl(layout, tag)}>
           {tag}
         </a>
-      </div>
-    );
+    </span>
+   )
   });
 };
 
