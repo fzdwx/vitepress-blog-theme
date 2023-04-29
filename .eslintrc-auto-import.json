@@ -90,7 +90,6 @@
     "pageListItemContent": true,
     "pageListItemCover": true,
     "pageMap": true,
-    "pageMetaInfo": true,
     "pageMetaTag": true,
     "pages": true,
     "pausableWatch": true,

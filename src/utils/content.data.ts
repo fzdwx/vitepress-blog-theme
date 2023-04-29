@@ -47,6 +47,7 @@ export default createContentLoader("./content/**/*.md", {
           desc: parseDesc(html, frontmatter.summary),
           date: date,
           update: update,
+          html: html,
         };
       })
       .sort((a, b) => b.update - a.update);

@@ -1,4 +1,7 @@
-import { ThemeConfig } from "./config";
+import {
+  ThemeConfig
+}
+from "./config";
 
 interface Page {
   title: string;
@@ -8,6 +11,7 @@ interface Page {
   frontmatter: Record<string, any>;
   src: string; // markdown content
   desc: string; // description
+  html?: string
 }
 
 interface Links {
@@ -24,10 +28,12 @@ interface FeedItem {
 }
 
 interface FeedItemInfo {
-	name : string ;
-	title: string ;
-	url:   string ;
-	time:  string ;
+  name: string;
+  title: string;
+  url: string;
+  time: string;
 }
 
-export type { Page, ThemeConfig, Links, FeedItem,FeedItemInfo };
+export type {
+  Page, ThemeConfig, Links, FeedItem, FeedItemInfo
+};

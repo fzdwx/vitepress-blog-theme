@@ -228,7 +228,7 @@ func newCmd() *cobra.Command {
 				return
 			}
 
-			layouts := []string{"post", "doc"}
+			layouts := []string{"post", "doc", "qa"}
 			selectKeymap := components.DefaultSingleKeyMap()
 			selectKeymap.Confirm = key.NewBinding(
 				key.WithKeys("enter"),
@@ -364,6 +364,10 @@ func logCmd() *cobra.Command {
 			log := `# bang
 
 vitepress-blog-theme 的辅助工具
+
+## v0.6.1
+
+1. new command 支持 qa 模板
 
 ## v0.6.0
 
@@ -621,6 +625,8 @@ func newPage(title, layout, group string) {
 		page = fmt.Sprintf(postTemplate, title, date)
 	} else if layout == "doc" {
 		page = fmt.Sprintf(docTemplate, group, title, date)
+	} else if layout == "qa" {
+		page = fmt.Sprintf(qaTemplate, title, date)
 	} else {
 		perr("unknow layout: "+layout, nil)
 		return
@@ -749,6 +755,15 @@ group: "%s"
 title: "%s"
 date: "%s"
 layout: "doc"
+tags: []
+---
+
+`
+
+const qaTemplate = `---
+title: "%s"
+date: "%s"
+layout: "qa"
 tags: []
 ---
 

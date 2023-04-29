@@ -5,6 +5,7 @@ import Post from "./Post.vue";
 import Tags from "./Tags.vue";
 import Doc from "./Doc";
 import Links from "./Links.vue";
+import Qa from "./Qa.vue";
 
 const { frontmatter } = useData();
 const shouldMb = () => {
@@ -35,6 +36,7 @@ const shouldMb = () => {
     <Doc v-else-if="frontmatter.layout === 'doc'" />
     <Tags v-else-if="frontmatter.layout === 'tags'" />
     <Links v-else-if="frontmatter.layout === 'links'" />
+    <Qa v-else-if="frontmatter.layout === 'qamain'" />
     <div v-else>
       <Content />
     </div>

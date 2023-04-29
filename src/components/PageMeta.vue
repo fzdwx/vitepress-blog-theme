@@ -11,6 +11,7 @@ const layout = data.page.value.frontmatter.layout;
 const props = defineProps<{
   page: Page;
   showEditLink: boolean;
+  foratDatePattern?: string;
 }>();
 
 const showFunc = () => {
@@ -41,6 +42,7 @@ const show = computed(showFunc);
       :page="page"
       :show="show"
       :showEditLink="showEditLink"
+      :foratDatePattern="foratDatePattern"
     />
     <PageMetaTag
       v-if="page.frontmatter.tags"
