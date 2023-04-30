@@ -68,6 +68,9 @@ const formatDate = (time: string | number, pattern?: string) => {
 };
 
 const tagsUrl = (layout: string, tag: string) => {
+  if(layout ==="qamain"){
+    return `/qa.html?tag=${tag}`
+  }
   return `/tags?layout=${layout}&tag=${tag}`;
 };
 

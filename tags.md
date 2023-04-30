@@ -5,4 +5,5 @@ layoutTitleMap:
   issue: "Notes"
   post: "Posts"
   doc: "Document"
+  qamain: "Q&A"
 ---
