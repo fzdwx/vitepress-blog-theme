@@ -14,7 +14,19 @@ const state = reactive({
 
 onMounted(() => {
   const pages = getPages("qa", theme.value)
-  state.pages = pages
+  state.pages = pages.map(page => {
+    const path = encodeURI(page.url.replace(".html", ".md"))
+    if (theme.value.editLink) {
+      if (theme.value.editLink.pattern) {
+        if (typeof theme.value.editLink.pattern == "string") {
+          page.frontmatter.editLink = theme.value.editLink.pattern.replace(":path", path)
+        } else {
+          page.frontmatter.editLink = theme.value.editLink.pattern({ relativePath: path });
+        }
+      }
+    }
+    return page
+  })
   pages.map(page => {
     if (page.frontmatter.tags) {
       //@ts-ignore
@@ -50,8 +62,8 @@ function showModalClass() {
 
 <template>
   <MainContent>
-    <header :class="showModalClass()" class="post-title center mb-10 pt-10">
-      <h1>
+    <header class="center mb-10 pt-10">
+      <h1 :class="showModalClass()">
         {{ page.title }}
       </h1>
     </header>
@@ -69,16 +81,18 @@ function showModalClass() {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </MainContent>
 
-        <div v-if="state.showModal" @click.self="closeModal()"
-          class="fixed z-50 top-0 left-0 right-0 bottom-0 flex items-center justify-center  backdrop-filter backdrop-blur-sm">
-          <div class=" dark:bg-slate-400/10 max-h[80%] w-[95%] rounded-lg shadow-lg overflow-hidden md:max-w-4xl">
-            <div class="p-4 ">
-              <h2 class="font-medium text-lg mb-2">{{ state.pages[state.modalIndex].title }}</h2>
-              <PageMeta :show-edit-link="true" :page="state.pages[state.modalIndex]"></PageMeta>
-              <div class=" mb-4" v-html="state.pages[state.modalIndex].html"></div>
-            </div>
-          </div>
+  <MainContent class="vp-doc prose dark:prose-invert">
+    <div v-if="state.showModal" @click.self="closeModal()"
+      class="fixed z-50 top-0 left-0 right-0 bottom-0 flex items-center justify-center  backdrop-filter backdrop-blur-sm">
+      <div class=" dark:bg-slate-400/10 max-h[80%] w-[95%] rounded-lg shadow-lg overflow-hidden md:max-w-4xl">
+        <div class="p-4 ">
+          <h2 class="font-medium text-lg center mb-2">{{ state.pages[state.modalIndex].title }}</h2>
+          <PageMeta :show-edit-link="true" :page="state.pages[state.modalIndex]"></PageMeta>
+          <div class=" mb-4" v-html="state.pages[state.modalIndex].html"></div>
         </div>
       </div>
     </div>

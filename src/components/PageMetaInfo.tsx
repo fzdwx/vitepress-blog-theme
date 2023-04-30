@@ -17,7 +17,7 @@ const editLink = ({editLinkPattern, relativePath, editLink} : Props) => { // pre
   }
 
   if (typeof editLinkPattern === "function") {
-    return editLinkPattern(relativePath);
+    return editLinkPattern({relativePath: relativePath});
   }
   return editLinkPattern.replace(":path", relativePath);
 };

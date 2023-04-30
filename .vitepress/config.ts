@@ -15,8 +15,8 @@ export default defineConfigWithTheme<ThemeConfig>({
     dateFormat: "YYYY-MM-DD HH:mm:ss",
     editLink: {
       text: "✍",
-      pattern: (path) => {
-        return `https://github.com/fzdwx/vitepress-blog-theme/blob/main/${path}`;
+      pattern: ({relativePath}: { relativePath: string }) => {
+        return `https://github.com/fzdwx/vitepress-blog-theme/blob/main/${relativePath}`;
       },
     },
     issues: {
