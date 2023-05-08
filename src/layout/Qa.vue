@@ -129,7 +129,7 @@ const collectQa = (tag: string) => {
   <MainContent v-if="state.showModal" class="vp-doc prose dark:prose-invert">
     <div @click.self="closeModal()"
       class="fixed z-50 top-0 left-0 right-0 bottom-0 flex items-center justify-center  backdrop-filter backdrop-blur-sm">
-      <div class=" dark:bg-slate-400/10 max-h[80%] w-[95%] rounded-lg shadow-lg overflow-hidden md:max-w-4xl">
+      <div class=" dark:bg-slate-400/10 max-h-[80%] overflow-scroll w-[95%] rounded-lg shadow-lg md:max-w-4xl">
         <div class="p-4 ">
           <h2 class="font-medium text-lg center mb-2">{{ state.currentPages[state.modalIndex].title }}</h2>
           <PageMeta :show-edit-link="true" :page="state.currentPages[state.modalIndex]"></PageMeta>
