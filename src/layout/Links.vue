@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import Feeds from "@/components/Feeds.jsx";
 import MainContent from "@/components/MainContent";
-import { FeedItem, FeedItemInfo } from "@/types";
+import {FeedItem, FeedItemInfo} from "@/types";
 import dayjs from "dayjs";
-import { useData } from "vitepress";
+import {useData} from "vitepress";
 
 const parseFeedItems = async () => {
-  const { frontmatter } = useData();
+  const {frontmatter} = useData();
   const resp = await fetch(frontmatter.value.feedsUrl || "/links.json");
   const val = await resp.json();
   return val.items as FeedItem[];
@@ -79,20 +79,21 @@ const activeName = (name: string) => {
   }
 }
 
-const { frontmatter } = useData();
+const {frontmatter} = useData();
 </script>
 <template>
   <MainContent>
     <header class="mt-10 center">
       <h1>{{ frontmatter.title || "Links" }}</h1>
     </header>
-    <div class="flex mt-10">
-      <div class=" mx-2 " v-for="user in state.users">
-        <p :class="activeName(user.name)" class="cursor-pointer" @click='() => changeFeed(user.name)'>
-          {{ user.name }}
-        </p>
-      </div>
+    <div class="flex mt-10 flex-col sm:flex-row">
+      <p v-for="user in state.users" :class="activeName(user.name)" class="sm:px-1 hover:text-cyna-3 cursor-pointer"
+         @click='() => changeFeed(user.name)'>
+        {{ user.name }}
+      </p>
     </div>
-    <Feeds :itemsGroup="state.itemsGroup" />
+    <div class="center">
+      <Feeds :itemsGroup="state.itemsGroup"/>
+    </div>
   </MainContent>
 </template>
